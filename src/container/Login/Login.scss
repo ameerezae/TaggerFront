@@ -19,6 +19,7 @@ a{
   width: 40% !important;
   //border: 3px solid gray;
   margin-top: 10%;
+  margin-bottom : 10%;
   box-shadow: 2px 2px 5px 4px rgba(0, 0, 0, 0.2);
   background-color: #fff;
   border-radius: 3px;
@@ -29,14 +30,14 @@ a{
   font-size: 2rem;
 }
 .guide-to-signup {
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: gray;
   font-family: Shabnam;
   margin-top: 2%;
 
 }
 .link-to-signUp{
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: blue;
   font-family: Shabnam;
   margin-top: 2%;
@@ -45,7 +46,7 @@ a{
 .password-input-field {
   font-family: Shabnam;
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1rem;
   margin-right: 2%;
 
 }
@@ -75,7 +76,7 @@ a{
 .button-submit-login{
   width: 30%;
   font-family: Shabnam;
-  font-size: 1.2rem;
+  font-size: 1rem;
   &:hover,
   &:active{
     background-color: #fff!important;
@@ -84,11 +85,11 @@ a{
 }
 
 #email,#password {
-  font-size : 1.3rem;
+  font-size : 1rem;
 }
 
 #button{
-  font-size: 1.5rem;
+  font-size: 1rem;
  &:focus {
    outline-color: green;
  }

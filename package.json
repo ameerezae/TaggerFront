@@ -68,7 +68,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "compile:Login": "node-sass src/container/Login/Login.scss src/container/Login/Login.css"
+    "compile:Login": "node-sass src/container/Login/Login.scss src/container/Login/Login.css",
+    "compile:SignUp" : "node-sass src/container/SignUp/SignUp.scss src/container/SignUp/SignUp.css"
   },
   "eslintConfig": {
     "extends": "react-app"
