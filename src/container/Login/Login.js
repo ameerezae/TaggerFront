@@ -13,12 +13,17 @@ class LoginContainer extends Component {
         }
     }
     handleSubmit = (event, data) => {
-        console.log("ready to send data");
         event.preventDefault();
-        const url = "https://localhost";
-        axios.post(`${url}`,data);
+        fetch('http://localhost:8000/authentication/login', {
+            method:"POST",
+            body:JSON.stringify(data),
+            headers :{
 
-    }
+                "Content-type" : "application/json"
+            }
+        })
+        }
+
 
     hadnleChange = (event) => {
         const name = event.target.name;

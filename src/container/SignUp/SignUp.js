@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-
+import "./SignUp.css";
 class SignUpContainer extends Component {
     render() {
         const signUpForm = (
-            <div className="center container">
-                OK
+            <div className="container center">
+
+
 
             </div>
         );
