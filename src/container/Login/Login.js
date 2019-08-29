@@ -3,7 +3,16 @@ import "./Login.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {InputGroup, FormControl, Button} from 'react-bootstrap'
 class LoginContainer extends Component {
+
+    state ={
+        data : {
+            Email : "",
+            Password: "",
+        }
+    }
+
     render() {
+
 
         const loginForm = (
             <div className="center container">
@@ -12,7 +21,7 @@ class LoginContainer extends Component {
                 </div>
                 <hr/>
                 <div className="row justify-content-end ">
-                    <p className="link-to-signUp col-3">عضویت</p>
+                    <a href="#" className="link-to-signUp col-3 mr-4">عضویت</a>
                     <p className="guide-to-signup col-6">.اگر حساب کاربری ندارید ثبت نام کنید</p>
                 </div>
                 <hr/>
@@ -20,8 +29,8 @@ class LoginContainer extends Component {
                     <h2 className="email-input-field mt-3">ایمیل</h2>
                 </div>
                 <div className="row justify-content-center">
-                    <InputGroup className="mb-3 mt-2 email-input-login">
-                        <FormControl className = "placeHolder-input"
+                    <InputGroup  className="mb-3 mt-2 email-input-login">
+                        <FormControl id="email" type="email" className = "placeHolder-input email-input-style"
                             placeholder="ایمیل خودرا وارد نمایید"
                         />
                     </InputGroup>
@@ -31,13 +40,13 @@ class LoginContainer extends Component {
                 </div>
                 <div className="row justify-content-center">
                     <InputGroup className="mb-3 mt-2 password-input-login">
-                        <FormControl className = "placeHolder-input"
+                        <FormControl id="password" type="password" className = "placeHolder-input password-input-style"
                                      placeholder="رمز عبور خودرا وارد نمایید"
                         />
                     </InputGroup>
                 </div>
                 <div className="row justify-content-center">
-                    <Button className="mb-5 mt-4 button-submit-login" type="submit" variant="success" size="md">
+                    <Button id="button" className="mb-5 mt-4 button-submit-login" type="submit" variant="success" size="md">
                         ورود
                     </Button>
                 </div>
@@ -49,6 +58,7 @@ class LoginContainer extends Component {
 
         return (
             <div>
+                <div className="background"></div>
                 {loginForm}
             </div>
         );

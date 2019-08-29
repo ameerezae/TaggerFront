@@ -1,11 +1,27 @@
+a{
+  text-decoration: none;
+}
 @font-face {
   font-family: shabnam;
   src: url(../../fonts/Shabnam.ttf); }
+.background {
+  background-size:cover;
+  background-position: top;
+  background-image: linear-gradient(to right bottom, rgba(72,198,239,.75),rgb(42,82,152));
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  top:0;
+  left:0;
+}
 .center {
-  width: 35% !important;
-  border: 3px solid gray;
+  width: 40% !important;
+  //border: 3px solid gray;
   margin-top: 10%;
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 5px 4px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  border-radius: 3px;
 }
 .login-title{
   font-family: Shabnam;
@@ -13,14 +29,14 @@
   font-size: 2rem;
 }
 .guide-to-signup {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: gray;
   font-family: Shabnam;
   margin-top: 2%;
 
 }
 .link-to-signUp{
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: blue;
   font-family: Shabnam;
   margin-top: 2%;
@@ -44,6 +60,18 @@
   width: 92% !important;
 }
 
+.email-input-style,
+.password-input-style {
+  padding: 3% 1% !important;
+  border-radius: 10px !important;
+  &:active,
+  &:hover,
+  &:focus{
+    outline: none !important;
+
+  }
+ }
+
 .button-submit-login{
   width: 30%;
   font-family: Shabnam;
@@ -53,4 +81,19 @@
     background-color: #fff!important;
     color: #218838!important;
   }
+}
+
+#email,#password {
+  font-size : 1.3rem;
+}
+
+#button{
+  font-size: 1.5rem;
+ &:focus {
+   outline-color: green;
+ }
+}
+
+#ok {
+  text-align: right;
 }
