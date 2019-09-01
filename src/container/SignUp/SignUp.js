@@ -11,7 +11,10 @@ class SignUpContainer extends Component {
             phone_number: "",
         },
         doesExistUsername: null,
+        idForUsername : "",
     };
+
+
     requestForCheckUsername = (username) => {
         // console.log("checked");
         const url = "http://127.0.0.1:8000/authentication/check_username/"
@@ -21,7 +24,10 @@ class SignUpContainer extends Component {
             headers : {
                 "Content-Type" : "application:json"
             }
-        }).then(response => response.json()).then(json => this.setState({doesExistUsername : json.doesExist}))
+        }).then(response => response.json()).then(json => this.setState({doesExistUsername : json.doesExist}));
+        if(this.state.doesExistUsername === null ) this.setState({idForUsername : "username"});
+        else if(this.state.doesExistUsername === true) this.setState({idForUsername : "username1"});
+        else if(this.state.doesExistUsername === false) this.setState({idForUsername : "username2"});
         console.log(this.state.doesExistUsername);
     };
     handleChange = (event) => {
@@ -71,28 +77,28 @@ class SignUpContainer extends Component {
                         <h2 className="id-input-field mt-3">نام کاربری</h2>
                     </div>
                     <div className="row justify-content-center">
-                        <InputGroup  className="mb-3 mt-2 id-input-signup" >
+                        <InputGroup className="mb-3 mt-2 id-input-signup">
                             <FormControl
-                                onChange = {this.handleChange}
-                                name ="username"
-                                value = {this.state.data.username}
-                                id="username" type="text"
-                                className = "placeHolder-input input-style"
+                                onChange={this.handleChange}
+                                name="username"
+                                value={this.state.data.username}
+                                id={this.state.idForUsername} type="text"
+                                className="placeHolder-input input-style"
                                 placeholder="نام کاربری مورد نظر خودرا وارد نمایید"
-                            required/>
+                                required/>
                         </InputGroup>
                     </div>
                     <div className="row justify-content-end">
                         <h2 className="email-input-field mt-3">ایمیل</h2>
                     </div>
                     <div className="row justify-content-center">
-                        <InputGroup  className="mb-3 mt-2 email-input-signup">
+                        <InputGroup className="mb-3 mt-2 email-input-signup">
                             <FormControl
-                                onChange = {this.handleChange}
-                                name ="email"
-                                value = {this.state.data.email}
+                                onChange={this.handleChange}
+                                name="email"
+                                value={this.state.data.email}
                                 id="email" type="email"
-                                className = "placeHolder-input input-style"
+                                className="placeHolder-input input-style"
                                 placeholder="ایمیل خودرا وارد نمایید"
                                 required/>
                         </InputGroup>
@@ -101,13 +107,13 @@ class SignUpContainer extends Component {
                         <h2 className="phoneNumber-input-field mt-3">شماره تلفن همراه</h2>
                     </div>
                     <div className="row justify-content-center">
-                        <InputGroup  className="mb-3 mt-2 phoneNumber-input-signup">
+                        <InputGroup className="mb-3 mt-2 phoneNumber-input-signup">
                             <FormControl
-                                onChange = {this.handleChange}
-                                name ="phone_number"
-                                value = {this.state.data.phone_number}
+                                onChange={this.handleChange}
+                                name="phone_number"
+                                value={this.state.data.phone_number}
                                 id="phone_number" type="phone"
-                                className = "placeHolder-input input-style"
+                                className="placeHolder-input input-style"
                                 placeholder="شماره تلفن همراه خودرا وارد نمایید"
                                 required/>
                         </InputGroup>
@@ -120,41 +126,41 @@ class SignUpContainer extends Component {
                             <div className="row justify-content-center">
                                 <InputGroup className="mb-3 mt-2 password-input-signup">
                                     <FormControl
-                                        onChange = {this.handleChange}
-                                        name = "password1"
-                                        value = {this.state.data.password1}
+                                        onChange={this.handleChange}
+                                        name="password1"
+                                        value={this.state.data.password1}
                                         id="password1" type="password"
-                                        className = "placeHolder-input input-style"
+                                        className="placeHolder-input input-style"
                                         placeholder="رمز عبور خودرا وارد نمایید"
                                         required/>
                                 </InputGroup>
                             </div>
                         </div>
                         <div className="col-sm-6 col-md-6">
-                                <div className="row justify-content-start">
-                                    <h2 className="password-input-field mt-4"> تکرار رمزعبور</h2>
-                                </div>
-                                <div className="row justify-content-center">
-                                    <InputGroup className="mb-3 mt-2 password-input-signup">
-                                        <FormControl
-                                            onChange = {this.handleChange}
-                                            name = "password2"
-                                            value = {this.state.data.password2}
-                                            id="password2" type="password"
-                                            className = "placeHolder-input input-style"
-                                            placeholder="رمز عبور خودرا تکرار نمایید"
-                                            required/>
-                                    </InputGroup>
-                                </div>
+                            <div className="row justify-content-start">
+                                <h2 className="password-input-field mt-4"> تکرار رمزعبور</h2>
+                            </div>
+                            <div className="row justify-content-center">
+                                <InputGroup className="mb-3 mt-2 password-input-signup">
+                                    <FormControl
+                                        onChange={this.handleChange}
+                                        name="password2"
+                                        value={this.state.data.password2}
+                                        id="password2" type="password"
+                                        className="placeHolder-input input-style"
+                                        placeholder="رمز عبور خودرا تکرار نمایید"
+                                        required/>
+                                </InputGroup>
+                            </div>
                         </div>
                     </div>
                     <div className="row justify-content-center">
-                        <Button id="button" className="mt-4 mb-4 button-submit-signup" type="submit" variant="success" size="md">
+                        <Button id="button" className="mt-4 mb-4 button-submit-signup" type="submit" variant="success"
+                                size="md">
                             ثبت نام
                         </Button>
                     </div>
                 </form>
-
 
 
             </div>

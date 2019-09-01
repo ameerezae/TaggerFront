@@ -45,5 +45,20 @@
     background-color: #fff !important;
     color: #218838 !important; }
 
-#email, #username, #password1, #password2, #phone_number {
+#username {
+  font-size: 1rem;
+  background-color: white; }
+
+#username1 {
+  font-size: 1rem;
+  background-color: red; }
+
+#username2 {
+  font-size: 1rem;
+  background-color: green; }
+
+#email, #password1, #password2, #phone_number {
   font-size: 1rem; }
+
+.add {
+  background-color: red !important; }
