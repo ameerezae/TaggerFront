@@ -2,6 +2,10 @@
   div.signup-body {
     width: 70% !important; } }
 
+@media screen and (max-width: 335px) {
+  #username {
+    font-size: .2rem; } }
+
 .signup-body {
   width: 40% !important;
   margin-top: 5%;
@@ -40,3 +44,6 @@
   .button-submit-signup:hover, .button-submit-signup:active {
     background-color: #fff !important;
     color: #218838 !important; }
+
+#email, #username, #password1, #password2, #phone_number {
+  font-size: 1rem; }
