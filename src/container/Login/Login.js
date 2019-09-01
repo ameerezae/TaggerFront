@@ -14,7 +14,7 @@ class LoginContainer extends Component {
     }
     handleSubmit = (event, data) => {
         event.preventDefault();
-        fetch('http://localhost:8000/authentication/login', {
+        fetch('http://localhost:8000/authentication/login/', {
             method:"POST",
             body:JSON.stringify(data),
             headers :{

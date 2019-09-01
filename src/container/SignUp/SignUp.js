@@ -9,21 +9,36 @@ class SignUpContainer extends Component {
             password1: "",
             password2 : "",
             phone_number: "",
-        }
-    }
-
+        },
+        doesExistUsername: null,
+    };
+    requestForCheckUsername = (username) => {
+        // console.log("checked");
+        const url = "http://127.0.0.1:8000/authentication/check_username/"
+        fetch(`${url}`,{
+            method:"POST",
+            body:JSON.stringify(username),
+            headers : {
+                "Content-Type" : "application:json"
+            }
+        }).then(response => response.json()).then(json => this.setState({doesExistUsername : json.doesExist}))
+        console.log(this.state.doesExistUsername);
+    };
     handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
-
-        this.setState(prevstate => {
-            const newState = {...this.state};
+        this.setState(prevState => {
+            const newState = {...prevState};
             newState.data[name] = value;
             return newState;
             }
-        )
+        );
+        if(name === "username"){
+            this.requestForCheckUsername(this.state.data.username);
+        }
         console.log(this.state.data);
     };
+
     handleSubmit = (event, data) =>{
         event.preventDefault();
         const url = "http://127.0.0.1:8000/authentication/registration/";
@@ -36,6 +51,11 @@ class SignUpContainer extends Component {
             }
         })
         console.log("ready");
+
+
+
+
+
     };
 
 
@@ -93,7 +113,7 @@ class SignUpContainer extends Component {
                         </InputGroup>
                     </div>
                     <div className="row password-box">
-                        <div className="col-sm-6">
+                        <div className="col-sm-6 col-md-6">
                             <div className="row justify-content-start">
                                 <h2 className="password-input-field mt-4">رمزعبور</h2>
                             </div>
@@ -110,7 +130,7 @@ class SignUpContainer extends Component {
                                 </InputGroup>
                             </div>
                         </div>
-                        <div className="col-sm-6">
+                        <div className="col-sm-6 col-md-6">
                                 <div className="row justify-content-start">
                                     <h2 className="password-input-field mt-4"> تکرار رمزعبور</h2>
                                 </div>
