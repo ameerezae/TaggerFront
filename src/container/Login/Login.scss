@@ -1,6 +1,16 @@
 a{
   text-decoration: none;
 }
+@media screen and (max-width: 544px) {
+  div.guide-to-signup{
+    font-size: .7rem;
+  }
+}
+@media screen and (max-width: 750px) {
+  div.center{
+    width: 70% !important;
+  }
+}
 @font-face {
   font-family: shabnam;
   src: url(../../fonts/Shabnam.ttf); }
@@ -35,6 +45,7 @@ a{
   color: gray;
   font-family: Shabnam;
   margin-top: 2%;
+  text-align: center;
 
 }
 .link-to-signUp{
@@ -62,8 +73,10 @@ a{
   width: 92% !important;
 }
 
-.email-input-style,
-.password-input-style {
+.input-style
+ {
+  direction: rtl;
+  width: 92% !important;
   padding: 3% 1% !important;
   border-radius: 10px !important;
   &:active,
@@ -98,4 +111,8 @@ a{
 
 #ok {
   text-align: right;
+}
+
+.direct-to-signup-box{
+  direction: rtl;
 }

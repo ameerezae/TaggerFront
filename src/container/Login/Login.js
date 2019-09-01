@@ -8,8 +8,8 @@ class LoginContainer extends Component {
 
     state ={
         data : {
-            Email : "",
-            Password: "",
+            username : "",
+            password: "",
         }
     }
     handleSubmit = (event, data) => {
@@ -45,24 +45,30 @@ class LoginContainer extends Component {
                     <p className="login-title mt-3"> ورود به پنل </p>
                 </div>
                 <hr/>
-                <div className="row justify-content-end ">
-                    <a href="#" className="link-to-signUp col-3 mr-4">عضویت</a>
-                    <p className="guide-to-signup col-6">.اگر حساب کاربری ندارید ثبت نام کنید</p>
+                <div className="row direct-to-signup-box">
+                    <div className="col-sm-6">
+                        <div className="row justify-content-center guide-to-signup ">اگر حساب کاربری ندارید ثبت نام کنید:</div>
+                    </div>
+                    <div className="col-sm-6">
+                        <div className="row justify-content-center link-to-signUp">عضویت</div>
+
+                    </div>
+
                 </div>
                 <hr/>
                 <form onSubmit={event => this.handleSubmit(event,this.state.data)}>
                 <div className="row justify-content-end">
-                    <h2 className="email-input-field mt-3">ایمیل</h2>
+                    <h2 className="email-input-field mt-3">نام کاربری</h2>
                 </div>
                 <div className="row justify-content-center">
                     <InputGroup  className="mb-3 mt-2 email-input-login">
                         <FormControl
                             onChange = {this.hadnleChange}
-                            name ="Email"
+                            name ="username"
                             value = {this.state.data.Email}
-                            id="email" type="email"
-                            className = "placeHolder-input email-input-style"
-                            placeholder="ایمیل خودرا وارد نمایید"
+                            id="email" type="text"
+                            className = "placeHolder-input input-style"
+                            placeholder="نام کاربری خودرا وارد نمایید"
                         />
                     </InputGroup>
                 </div>
@@ -73,10 +79,10 @@ class LoginContainer extends Component {
                     <InputGroup className="mb-3 mt-2 password-input-login">
                         <FormControl
                             onChange = {this.hadnleChange}
-                            name = "Password"
+                            name = "password"
                             value = {this.state.data.Password}
                             id="password" type="password"
-                            className = "placeHolder-input password-input-style"
+                            className = "placeHolder-input input-style"
                             placeholder="رمز عبور خودرا وارد نمایید"
                         />
                     </InputGroup>

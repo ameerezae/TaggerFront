@@ -1,0 +1,52 @@
+@media screen and (max-width: 750px) {
+  div.signup-body{
+    width: 70% !important;
+  }
+}
+.signup-body {
+  width: 40% !important;
+  //border: 3px solid gray;
+  margin-top: 5%;
+  margin-bottom : 8%;
+  box-shadow: 2px 2px 5px 4px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  border-radius: 3px;
+}
+.signup-title{
+  font-family: Shabnam;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.email-input-field,
+.password-input-field,
+.id-input-field,
+.phoneNumber-input-field{
+  font-family: Shabnam;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-right: 2%;
+
+}
+
+.email-input-signup,
+.password-input-signup,
+.phoneNumber-input-signup,
+.id-input-signup
+{
+  width: 92% !important;
+}
+
+.password-box {
+  direction: rtl;
+}
+.button-submit-signup{
+  width: 40%;
+  font-family: Shabnam;
+  font-size: 1rem;
+  &:hover,
+  &:active{
+    background-color: #fff!important;
+    color: #218838!important;
+  }
+}
