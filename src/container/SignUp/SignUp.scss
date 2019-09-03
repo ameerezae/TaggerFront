@@ -1,3 +1,6 @@
+$usrename-green : rgba(130, 224, 170,1);
+$username-red : rgba(241, 148, 138,1);
+
 @media screen and (max-width: 750px) {
   div.signup-body{
     width: 70% !important;
@@ -60,19 +63,15 @@
   font-size: 1rem;
   background-color: white;
 }
-#username1{
+#username-green{
   font-size: 1rem;
-  background-color: red;
+  background-color: $usrename-green;
 }
-#username2{
+#username-red{
   font-size: 1rem;
-  background-color: green;
+  background-color: $username-red;
 }
 #email,#password1,#password2,#phone_number{
   font-size: 1rem;
 }
 
-
-.add{
-  background-color: red !important;
-}

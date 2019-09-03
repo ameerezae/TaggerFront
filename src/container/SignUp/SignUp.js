@@ -13,12 +13,6 @@ class SignUpContainer extends Component {
         doesExistUsername: null,
         idForUsername : "",
     };
-    // componentDidUpdate(prevProps, prevState, snapshot) {
-    //     console.log(
-    //         `this.state.clickCounts(♻️ componentDidUpdate)`,
-    //         this.state.data
-    //     );
-    // }
 
 
     requestForCheckUsername = (username) => {
@@ -31,10 +25,12 @@ class SignUpContainer extends Component {
                 "Content-Type" : "application/json"
             }
         }).then(response => response.json()).then(json => this.setState({doesExistUsername : json.detail},() => {
+
             switch (this.state.doesExistUsername) {
+
                 case null: this.setState({idForUsername : "username"}); break;
-                case true : this.setState({idForUsername : "username1"}); break;
-                case false : this.setState({idForUsername : "username2"}); break;
+                case true : this.setState({idForUsername : "username-red"}); break;
+                case false : this.setState({idForUsername : "username-green"}); break;
 
             }
         }));
@@ -95,8 +91,9 @@ class SignUpContainer extends Component {
                         <h2 className="id-input-field mt-3">نام کاربری</h2>
                     </div>
                     <div className="row justify-content-center">
-                        <InputGroup className="mb-3 mt-2 id-input-signup">
+                        <InputGroup variant="light" className="mb-3 mt-2 id-input-signup">
                             <FormControl
+                                variant="light"
                                 onChange={this.handleChange}
                                 name="username"
                                 value={this.state.data.username}
