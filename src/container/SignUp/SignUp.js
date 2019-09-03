@@ -13,23 +13,39 @@ class SignUpContainer extends Component {
         doesExistUsername: null,
         idForUsername : "",
     };
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     console.log(
+    //         `this.state.clickCounts(♻️ componentDidUpdate)`,
+    //         this.state.data
+    //     );
+    // }
 
 
     requestForCheckUsername = (username) => {
-        // console.log("checked");
+        console.log(username)
         const url = "http://127.0.0.1:8000/authentication/check_username/"
         fetch(`${url}`,{
             method:"POST",
-            body:JSON.stringify(username),
+            body:JSON.stringify({"username":username}),
             headers : {
-                "Content-Type" : "application:json"
+                "Content-Type" : "application/json"
             }
-        }).then(response => response.json()).then(json => this.setState({doesExistUsername : json.doesExist}));
-        if(this.state.doesExistUsername === null ) this.setState({idForUsername : "username"});
-        else if(this.state.doesExistUsername === true) this.setState({idForUsername : "username1"});
-        else if(this.state.doesExistUsername === false) this.setState({idForUsername : "username2"});
-        console.log(this.state.doesExistUsername);
+        }).then(response => response.json()).then(json => this.setState({doesExistUsername : json.detail},() => {
+            switch (this.state.doesExistUsername) {
+                case null: this.setState({idForUsername : "username"}); break;
+                case true : this.setState({idForUsername : "username1"}); break;
+                case false : this.setState({idForUsername : "username2"}); break;
+
+            }
+        }));
+
+
+
+
     };
+
+
+
     handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -37,12 +53,14 @@ class SignUpContainer extends Component {
             const newState = {...prevState};
             newState.data[name] = value;
             return newState;
-            }
-        );
-        if(name === "username"){
-            this.requestForCheckUsername(this.state.data.username);
-        }
-        console.log(this.state.data);
+            },
+            () => {
+                if (name === "username") {
+                    this.requestForCheckUsername(this.state.data.username);
+                }
+
+            })
+
     };
 
     handleSubmit = (event, data) =>{
