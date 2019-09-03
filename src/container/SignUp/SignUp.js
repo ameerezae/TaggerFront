@@ -15,30 +15,63 @@ class SignUpContainer extends Component {
     };
 
 
-    requestForCheckUsername = (username) => {
-        console.log(username)
-        const url = "http://127.0.0.1:8000/authentication/check_username/"
-        fetch(`${url}`,{
-            method:"POST",
-            body:JSON.stringify({"username":username}),
-            headers : {
-                "Content-Type" : "application/json"
+    // test = (username) => {
+    //     console.log(username)
+    //     const url = "http://127.0.0.1:8000/authentication/check_username/";
+    //     fetch(`${url}`,{
+    //         method:"POST",
+    //         body:JSON.stringify({"username":username}),
+    //         headers : {
+    //             "Content-Type" : "application/json"
+    //         }
+    //     }).then(response => response.json()).then(json => this.setState({doesExistUsername : json.detail},() => {
+    //
+    //         switch (this.state.doesExistUsername) {
+    //
+    //             case null: this.setState({idForUsername : "username"}); break;
+    //             case true : this.setState({idForUsername : "username-red"}); break;
+    //             case false : this.setState({idForUsername : "username-green"}); break;
+    //
+    //         }
+    //     }));
+    //
+    // };
+
+    async requestForCheckUsername(username) {
+        try {
+            const url = "http://127.0.0.1:8000/authentication/check_username/";
+            const response = await fetch(`${url}`,{
+                method:"POST",
+                body:JSON.stringify({"username":username}),
+                headers : {
+                    "Content-Type" : "application/json"
+                }
+            });
+
+            if (!response.ok){
+                console.log("OHH BadRequest!");
+                throw Error(response.statusText);
+
             }
-        }).then(response => response.json()).then(json => this.setState({doesExistUsername : json.detail},() => {
 
-            switch (this.state.doesExistUsername) {
+            const json = await response.json();
 
-                case null: this.setState({idForUsername : "username"}); break;
-                case true : this.setState({idForUsername : "username-red"}); break;
-                case false : this.setState({idForUsername : "username-green"}); break;
+            this.setState({doesExistUsername : json.detail},() => {
 
-            }
-        }));
+                switch (this.state.doesExistUsername) {
 
+                    case null: this.setState({idForUsername : "username"}); break;
+                    case true : this.setState({idForUsername : "username-red"}); break;
+                    case false : this.setState({idForUsername : "username-green"}); break;
 
+                }
+        })
+        }
+        catch (e) {
+            console.log(e,"The server is Down!");
+        }
 
-
-    };
+    }
 
 
 
@@ -59,24 +92,45 @@ class SignUpContainer extends Component {
 
     };
 
-    handleSubmit = (event, data) =>{
+    // handleSubmit = (event, data) =>{
+    //     event.preventDefault();
+    //     const url = "http://127.0.0.1:8000/authentication/registration/";
+    //
+    //     fetch(`${url}`,{
+    //         method : "POST",
+    //         body : JSON.stringify(data),
+    //         headers : {
+    //             "Content-type" : "application/json"
+    //         }
+    //     })
+    //     console.log("ready");
+    //
+    //
+    //
+    //
+    //
+    // };
+
+    async handleSubmit(event, data) {
         event.preventDefault();
-        const url = "http://127.0.0.1:8000/authentication/registration/";
-
-        fetch(`${url}`,{
-            method : "POST",
-            body : JSON.stringify(data),
-            headers : {
-                "Content-type" : "application/json"
+        try{
+            const url = "http://127.0.0.1:8000/authentication/registration/";
+            const response = await fetch(`${url}`,{
+                    method : "POST",
+                    body : JSON.stringify(data),
+                    headers : {
+                        "Content-type" : "application/json"
+                    }
+                });
+            if(!response.ok){
+                console.log("OHH BadRequest!");
+                throw Error(response.statusText);
             }
-        })
-        console.log("ready");
+        }catch (e) {
+            console.log(e,"The server is Down!")
+        }
+    }
 
-
-
-
-
-    };
 
 
     render() {
@@ -86,7 +140,7 @@ class SignUpContainer extends Component {
                     <p className="signup-title mt-3">ثبت نام </p>
                 </div>
                 <hr/>
-                <form onSubmit={(event) => this.handleSubmit(event, this.state.data)}>
+                <form onSubmit={(event) => SignUpContainer.handleSubmit(event, this.state.data)}>
                     <div className="row justify-content-end">
                         <h2 className="id-input-field mt-3">نام کاربری</h2>
                     </div>
