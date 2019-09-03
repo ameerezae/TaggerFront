@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import "./Login.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {InputGroup, FormControl, Button} from 'react-bootstrap';
-import axios from "axios";
 
 class LoginContainer extends Component {
 
@@ -11,19 +10,28 @@ class LoginContainer extends Component {
             username : "",
             password: "",
         }
-    }
-    handleSubmit = (event, data) => {
+    };
+
+    static async handleSubmit  (event, data) {
         event.preventDefault();
-        fetch('http://localhost:8000/authentication/login/', {
-            method:"POST",
-            body:JSON.stringify(data),
-            headers :{
+        try {
+            const url = 'http://localhost:8000/authentication/login/';
+            const response = await fetch(`${url}`, {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
 
-                "Content-type" : "application/json"
+                    "Content-type": "application/json"
+                }
+            });
+            if (!response.ok) {
+                console.log("OHH BadRequest!");
+                throw Error(response.statusText);
             }
-        })
+        }catch (e) {
+            console.log(e,"The server is Down!");
         }
-
+    }
 
     hadnleChange = (event) => {
         const name = event.target.name;
@@ -32,9 +40,9 @@ class LoginContainer extends Component {
             const newState = {...prevState};
             newState.data[name] = value;
             return newState;
-        })
+        });
         console.log(this.state.data)
-    }
+    };
 
     render() {
 
@@ -50,13 +58,13 @@ class LoginContainer extends Component {
                         <div className="row justify-content-center guide-to-signup ">اگر حساب کاربری ندارید ثبت نام کنید:</div>
                     </div>
                     <div className="col-sm-6">
-                        <div className="row justify-content-center link-to-signUp">عضویت</div>
+                        <div className="row justify-content-center link-to-signUp"><a href={"/signup"}>عضویت</a></div>
 
                     </div>
 
                 </div>
                 <hr/>
-                <form onSubmit={event => this.handleSubmit(event,this.state.data)}>
+                <form onSubmit={event => LoginContainer.handleSubmit(event,this.state.data)}>
                 <div className="row justify-content-end">
                     <h2 className="email-input-field mt-3">نام کاربری</h2>
                 </div>

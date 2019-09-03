@@ -14,29 +14,6 @@ class SignUpContainer extends Component {
         idForUsername : "",
     };
 
-
-    // test = (username) => {
-    //     console.log(username)
-    //     const url = "http://127.0.0.1:8000/authentication/check_username/";
-    //     fetch(`${url}`,{
-    //         method:"POST",
-    //         body:JSON.stringify({"username":username}),
-    //         headers : {
-    //             "Content-Type" : "application/json"
-    //         }
-    //     }).then(response => response.json()).then(json => this.setState({doesExistUsername : json.detail},() => {
-    //
-    //         switch (this.state.doesExistUsername) {
-    //
-    //             case null: this.setState({idForUsername : "username"}); break;
-    //             case true : this.setState({idForUsername : "username-red"}); break;
-    //             case false : this.setState({idForUsername : "username-green"}); break;
-    //
-    //         }
-    //     }));
-    //
-    // };
-
     async requestForCheckUsername(username) {
         try {
             const url = "http://127.0.0.1:8000/authentication/check_username/";
@@ -84,34 +61,17 @@ class SignUpContainer extends Component {
             return newState;
             },
             () => {
-                if (name === "username") {
+                if (name === "username" &&
+                name.length >= 4) {
                     this.requestForCheckUsername(this.state.data.username);
+                    console.log(name.length);
                 }
 
             })
 
     };
 
-    // handleSubmit = (event, data) =>{
-    //     event.preventDefault();
-    //     const url = "http://127.0.0.1:8000/authentication/registration/";
-    //
-    //     fetch(`${url}`,{
-    //         method : "POST",
-    //         body : JSON.stringify(data),
-    //         headers : {
-    //             "Content-type" : "application/json"
-    //         }
-    //     })
-    //     console.log("ready");
-    //
-    //
-    //
-    //
-    //
-    // };
-
-    async handleSubmit(event, data) {
+    static async handleSubmit(event, data) {
         event.preventDefault();
         try{
             const url = "http://127.0.0.1:8000/authentication/registration/";
