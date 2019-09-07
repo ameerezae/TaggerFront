@@ -51,6 +51,7 @@
     "react-dev-utils": "^9.0.3",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",
+    "react-simple-sidenav": "^1.0.1",
     "resolve": "1.12.0",
     "resolve-url-loader": "3.1.0",
     "sass-loader": "^7.3.1",
@@ -69,7 +70,8 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "compile:Login": "node-sass src/container/Login/Login.scss src/container/Login/Login.css",
-    "compile:SignUp" : "node-sass src/container/SignUp/SignUp.scss src/container/SignUp/SignUp.css"
+    "compile:SignUp": "node-sass src/container/SignUp/SignUp.scss src/container/SignUp/SignUp.css",
+    "compile:Profile": "node-sass src/container/Profile/Profile.scss src/container/Profile/Profile.css"
   },
   "eslintConfig": {
     "extends": "react-app"

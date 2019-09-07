@@ -40,6 +40,7 @@ class SignUpContainer extends Component {
                     case null: this.setState({idForUsername : "username"}); break;
                     case true : this.setState({idForUsername : "username-red"}); break;
                     case false : this.setState({idForUsername : "username-green"}); break;
+                    default : this.setState({idForUsername : "username"}); break;
 
                 }
         })
@@ -62,9 +63,14 @@ class SignUpContainer extends Component {
             },
             () => {
                 if (name === "username" &&
-                name.length >= 4) {
+                value.length >= 4) {
                     this.requestForCheckUsername(this.state.data.username);
                     console.log(name.length);
+                }
+                else if (value.length < 4 ){
+
+                    this.setState({idForUsername : "username"});
+
                 }
 
             })
