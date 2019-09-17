@@ -10,7 +10,7 @@ import SideNavbarXs from "../../Components/SideNavbar-xs/SideNavbar-xs";
 class ProfileComponent extends Component  {
     state = {
         showNav : null,
-    }
+    };
 
     closeSideNavabr = () => {
 
@@ -21,20 +21,19 @@ class ProfileComponent extends Component  {
 
     return (
         <div className="row">
-            <div className="bg-success col-lg-10 col-md-9">
-                <p>1</p>
-                <p>2</p>
-                <p>3</p>
-                <p>4</p>
-                <p>5</p>
-         
-
+            <div className="col-lg-10 col-md-9 min-vh-100">
+                <div>5</div>
+                <div>5</div>
+                <div>5</div>
+                <div>5</div>
+                <div>5</div>
+                <div>5</div>
                 <div className="hidden-sm hidden-md hidden-lg">
                     <button onClick={() => {this.setState({showNav:true})}}>click</button>
                     <SideNavbarXs ShowNav = {this.state.showNav} closeNav = {this.closeSideNavabr}/>
                 </div>
             </div>
-            <div className="one-edge-shadow p-0 col-lg-2 col-3 hidden-xs">
+            <div className="one-edge-shadow p-0 col-lg-2 col-3 min-vh-100 hidden-xs">
                 <SideNavbarComponent/>
             </div>
         </div>

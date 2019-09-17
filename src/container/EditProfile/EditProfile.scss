@@ -1,0 +1,25 @@
+$font-SSO : "Shabnam";
+
+.header-Personal-info {
+  font-family: $font-SSO;
+  font-weight: bold;
+}
+
+.setTextAlign {
+  text-align: center;
+  border-radius : 19px;
+  width: 70%;
+  &:focus{
+    outline: none;
+  }
+}
+div.tether-element {
+  z-index : 2000;
+}
+
+
+//div.Dropdown-menu,
+//div.Dropdown-option.is-selected{
+//  position: absolute;
+//  background-color: white;
+//}
