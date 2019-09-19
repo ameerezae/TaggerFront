@@ -2,14 +2,17 @@ import React, {Component} from 'react';
 import SideNavbarXs from "../../Components/SideNavbar-xs/SideNavbar-xs";
 import SideNavbarComponent from "../../Components/SideNavbar/SideNavbar";
 import "./EditProfile.scss";
-import Dropdown from 'react-dropdown'
-import moment from 'moment-jalaali'
+import Dropdown from 'react-dropdown';
+import moment from "moment-jalaali";
 import DatePicker from "react-datepicker2";
 import {FormControl, InputGroup} from "react-bootstrap";
 import {SocialIcon} from "react-social-icons";
+import {TagInput} from "reactjs-tag-input";
+import Cookies from "js-cookie";
 
 class EditProfileContainer extends Component {
     state = {
+        tags : [],
         showNav : null,
         username : "",
         first_name : "",
@@ -26,11 +29,66 @@ class EditProfileContainer extends Component {
         bio : "",
         id_code : "",
         social_account : "",
-        value: moment(),
+        value: "",
         genderLabel : "",
         gradeLabel:"",
         editingMode : false ,
     };
+
+    componentWillMount() {
+        this.getDetails()
+    }
+    onTagsChanged = (tags) => {
+        this.setState({tags},()=>{console.log(this.state)})
+    }
+
+    async getDetails () {
+
+        try{
+            const url = "http://127.0.0.1:8000/authentication/profile/";
+            const response = await fetch(`${url}`, {
+                method : "GET",
+                headers:
+                    {
+                        Authorization: "JWT" + `${Cookies.get("JWTToken")}`
+                    },
+
+            });
+            response.then(req => req.json).then(req => this.saveData(req));
+            if (!response.ok){
+                console.log("OHH BadRequest!");
+                throw Error(response.statusText);
+            }
+
+        }catch (e) {
+            console.log(e,"The server is Down!");
+        }
+    }
+    saveData = (json) => {
+        const arr = [
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "image",
+            "birthday",
+            "phone_number",
+            "gender",
+            "grade",
+            "university",
+            "entering_year",
+            "graduate_year",
+            "bio",
+            "id_code",
+            "social_account",
+        ];
+        arr.forEach(function (element){
+            this.setState({[element] : json[element]})
+        })
+    };
+
+
+
     handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -180,7 +238,7 @@ class EditProfileContainer extends Component {
                             </div>
                             <div className="col">
                                 <div className="row justify-content-start">
-                                    <div className="row justify-content-start">{this.state.gender}</div>
+                                    <div className="row justify-content-start">{this.state.genderLabel}</div>
                                 </div>
                             </div>
                         </div>
@@ -191,7 +249,7 @@ class EditProfileContainer extends Component {
                                 <div className="row justify-content-start">تحصیلات</div>
                             </div>
                             <div className="col">
-                                <div className="row justify-content-start">{this.state.grade}</div>
+                                <div className="row justify-content-start">{this.state.gradeLabel}</div>
                             </div>
                         </div>
                     </div>
@@ -247,13 +305,15 @@ class EditProfileContainer extends Component {
                         <div className="row justify-content-start">حساب اجتماعی</div>
                     </div>
                     <div className="col">
-                        <div className="row justify-content-start"><SocialIcon url={"https://github.com/amirRezaeii"}/></div>
+                        <div className="row justify-content-start">
+                            {this.state.tags.map(element => <SocialIcon url={"https://"+`${element}`}/>)}
+                        </div>
                     </div>
                 </div>
             </div>
         );
         const EditingFrom = (
-            <form>
+            <form className="mb-5">
                 <div className="row my-4 mr-2">
                     <div className="col">
                         <div className="row justify-content-start">
@@ -526,9 +586,8 @@ class EditProfileContainer extends Component {
                         <div className="row justify-content-start">حساب اجتماعی</div>
                     </div>
                     <div className="col">
-                        <div className="row justify-content-start">{this.state.username}</div>
+                        <div className="row justify-content-start"><TagInput tags={this.state.tags} onTagsChanged={this.onTagsChanged} /></div>
                     </div>
-                    <div className="col"></div>
                 </div>
             </form>
         )

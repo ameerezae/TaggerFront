@@ -69,16 +69,16 @@ class LoginContainer extends Component {
                     <h2 className="email-input-field mt-3">نام کاربری</h2>
                 </div>
                 <div className="row justify-content-center">
-                    <InputGroup  className="mb-3 mt-2 email-input-login">
-                        <FormControl
-                            onChange = {this.hadnleChange}
-                            name ="username"
-                            value = {this.state.data.Email}
-                            id="email" type="text"
-                            className = "placeHolder-input input-style"
-                            placeholder="نام کاربری خودرا وارد نمایید"
-                        />
-                    </InputGroup>
+                            <InputGroup  className="mb-3 mt-2 email-input-login">
+                                <FormControl
+                                    onChange = {this.hadnleChange}
+                                    name ="username"
+                                    value = {this.state.data.Email}
+                                    id="email" type="text"
+                                    className = "placeHolder-input input-style"
+                                    placeholder="نام کاربری خودرا وارد نمایید"
+                                />
+                            </InputGroup>
                 </div>
                 <div className="row justify-content-end">
                     <h2 className="password-input-field mt-4">رمزعبور</h2>
