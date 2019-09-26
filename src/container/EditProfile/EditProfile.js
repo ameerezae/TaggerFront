@@ -12,6 +12,7 @@ import {GoGlobe} from "react-icons/go";
 import {TagInput} from "reactjs-tag-input";
 import {Button} from "react-bootstrap";
 import MagicDropzone from "react-magic-dropzone";
+import Cookies from "js-cookie";
 class EditProfileContainer extends Component {
     state = {
         formats: ".jpg, .jpeg, .png",
@@ -30,17 +31,57 @@ class EditProfileContainer extends Component {
             university: "",
             entering_year : "",
             graduate_year : "",
-            value : ""
+            value : "",
+            social_account: [],
         }
     };
+    async getDetails () {
 
+        try{
+            const url = "http://127.0.0.1:8000/authentication/profile/";
+            const response = await fetch(`${url}`, {
+                method : "GET",
+                headers:
+                    {
+                        Authorization: "JWT" + `${Cookies.get("JWTToken")}`
+                    },
 
-    onTagsChanged = (tags) => {
-        // this.setState({tags},()=>{console.log(this.state)})
-        this.setState(prevState => {
-            const newState = {...prevState};
-            newState.edited["tags"]  = tags;
-            return newState;
+            });
+            response.then(req => req.json).then(req => this.saveData(req));
+            if (!response.ok){
+                console.log("OHH BadRequest!");
+                throw Error(response.statusText);
+            }
+
+        }catch (e) {
+            console.log(e,"The server is Down!");
+        }
+    }
+    saveData = (json) => {
+        const arr = [
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "image",
+            "birthday",
+            "phone_number",
+            "gender",
+            "grade",
+            "university",
+            "entering_year",
+            "graduate_year",
+            "bio",
+            "id_code",
+            "social_account",
+        ];
+        arr.forEach(function (element){
+            // this.setState({[element] : json[element]})
+            this.setState(prevState=>{
+                const newState = {...prevState};
+                newState.edited[element] = json[element];
+                return newState
+            })
         })
     };
 
@@ -49,10 +90,10 @@ class EditProfileContainer extends Component {
         try{
             const url = "http://127.0.0.1:8000/authentication/registration/";
             const response = await fetch(`${url}`,{
-                method : "POST",
+                method : "PUT",
                 body : JSON.stringify(data),
                 headers : {
-                    "Content-type" : "application/json"
+                    Authorization: "JWT" + `${Cookies.get("JWTToken")}`
                 }
             });
             if(!response.ok){
@@ -63,6 +104,16 @@ class EditProfileContainer extends Component {
             console.log(e,"The server is Down!")
         }
     }
+
+
+    onTagsChanged = (tags) => {
+        // this.setState({tags},()=>{console.log(this.state)})
+        this.setState(prevState => {
+            const newState = {...prevState};
+            newState.edited["tags"]  = tags;
+            return newState;
+        })
+    };
 
     handleChange = (event) => {
         const name = event.target.name;
