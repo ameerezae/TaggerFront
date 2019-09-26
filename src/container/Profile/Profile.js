@@ -19,7 +19,7 @@ class ProfileComponent extends Component  {
         first_name : "",
         last_name : "",
         email : "",
-        image : "",
+        image : null,
         birthday : "",
         phone_number : "",
         gender : "",
@@ -86,7 +86,10 @@ class ProfileComponent extends Component  {
         const originalForm = (
             <div>
                 <div className="row justify-content-center my-4">
-                    <img src={User} alt="profile" className="img-fluid" style={{maxWidth : "100px"}}/>
+                    {this.state.image == null ?
+                        <img src={User} alt="profile" className="img-fluid" style={{maxWidth : "100px"}}/> :
+                        <img src={this.state.image} alt="profile" className="img-fluid" style={{maxWidth : "100px"}}/>
+                    }
                 </div>
                 <div className="row my-4 mr-2">
                     <div className="col">
