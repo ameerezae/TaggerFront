@@ -11,6 +11,15 @@ body {
     line-height: 1.5;
 }
 
+@font-face {
+    src : url("./fonts/IRTitr.ttf");
+    font-family: IRTitr;
+}
+
+@font-face {
+    src : url("./fonts/Vazir.ttf");
+    font-family: "Vazir";
+}
 
 .directionToLeft {
     direction: rtl;

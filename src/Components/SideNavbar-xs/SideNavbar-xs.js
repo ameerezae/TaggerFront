@@ -22,27 +22,27 @@ const SideNavbarXs = (props) => {
             openFromRight={true}
 
             items={[
-                <a>
+                <div href="#">
                     <i
                     className="ni ni-tv-2 text-primary"></i> داشبورد
-                </a>,
-                <a> <i className="ni ni-planet text-blue"></i> آیکون ها
-                </a>,
-                <a> <i className="ni ni-pin-3 text-orange"></i> نقشه ها
-                </a>,
-                <a> <i className="ni ni-single-02 text-yellow"></i> اطلاعات شخصی
-                </a>,
+                </div>,
+                <div href={"#"}> <i className="ni ni-planet text-blue"></i> آیکون ها
+                </div>,
+                <div href={"#"}> <i className="ni ni-pin-3 text-orange"></i> نقشه ها
+                </div>,
+                <div href={"#"}> <i className="ni ni-single-02 text-yellow"></i> اطلاعات شخصی
+                </div>,
                 <hr className="my-3"/>,
                 <h6 className="text-muted">اسناد</h6>,
-                <a className="text-muted">
+                <div className="text-muted" href={"#"}>
                     <i className=" ni ni-spaceship"></i> شروع
-                </a>,
-                <a className="text-muted">
+                </div>,
+                <div className="text-muted" href={"#"}>
                     <i className="ni ni-palette"></i> لینک ها
-                </a>,
-                <a className="text-muted">
+                </div>,
+                <div className="text-muted" href={"#"}>
                     <i className="ni ni-ui-04"></i> اجزا
-                </a>
+                </div>
             ]} />
     );
 };
