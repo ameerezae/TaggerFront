@@ -93,7 +93,7 @@ class ProfileComponent extends Component  {
                 </div>
                 <div className="row my-4 mr-2">
                     <div className="col">
-                        <div className="row justify-content-start"><FaRegIdBadge className="ml-2"/>نام کاربری</div>
+                        <div className="row justify-content-start"><FaRegIdBadge className="ml-2 text-indigo" style={{fontSize:"1.4rem"}}/>نام کاربری</div>
                     </div>
                     <div className="col">
                         <div className="row justify-content-start">{this.state.username}</div>
@@ -105,7 +105,7 @@ class ProfileComponent extends Component  {
                     <div className="col-sm-6">
                         <div className="row">
                             <div className="col">
-                                <div className="row justify-content-start"><FaUserAlt className="ml-2"/>نام</div>
+                                <div className="row justify-content-start"><FaUserAlt className="ml-2 text-muted"/>نام</div>
                             </div>
                             <div className="col">
                                 <div className="row justify-content-start">{this.state.first_name}</div>
@@ -115,7 +115,7 @@ class ProfileComponent extends Component  {
                     <div className="col-sm-6">
                         <div className="row">
                             <div className="col">
-                                <div className="row justify-content-start"><FaUserTag className="ml-2"/> نام خانوادگی </div>
+                                <div className="row justify-content-start"><FaUserTag className="ml-2 text-muted" style={{fontSize:"1.4rem"}}/> نام خانوادگی </div>
                             </div>
                             <div className="col">
                                 <div className="row justify-content-start">{this.state.last_name}</div>
@@ -129,7 +129,7 @@ class ProfileComponent extends Component  {
                     <div className="col-sm-6">
                         <div className="row">
                             <div className="col">
-                                <div className="row justify-content-start align-items-center"><IoMdFingerPrint className="ml-2"/> کدملی</div>
+                                <div className="row justify-content-start align-items-center"><IoMdFingerPrint className="ml-2 text-blue" style={{fontSize:"1.4rem"}}/> کدملی</div>
                             </div>
                             <div className="col">
                                 <div className="row justify-content-start">{this.state.id_code}</div>
@@ -139,7 +139,7 @@ class ProfileComponent extends Component  {
                     <div className="col-sm-6">
                         <div className="row">
                             <div className="col">
-                                <div className="row justify-content-start align-items-center"><IoMdMail className="ml-2"/>ایمیل</div>
+                                <div className="row justify-content-start align-items-center"><IoMdMail className="ml-2 text-blue"/>ایمیل</div>
                             </div>
                             <div className="col">
                                 <div className="row justify-content-start">{this.state.email}</div>
@@ -154,7 +154,7 @@ class ProfileComponent extends Component  {
                     <div className="col-sm-6">
                         <div className="row">
                             <div className="col">
-                                <div className="row justify-content-start align-items-center"><IoMdCalendar className="ml-2"/>تاریخ تولد</div>
+                                <div className="row justify-content-start align-items-center"><IoMdCalendar className="ml-2 text-orange" style={{fontSize:"1.4rem"}}/>تاریخ تولد</div>
                             </div>
                             <div className="col">
                                 <div className="row justify-content-start">
@@ -166,7 +166,7 @@ class ProfileComponent extends Component  {
                     <div className="col-sm-6">
                         <div className="row">
                             <div className="col">
-                                <div className="row justify-content-start align-items-center"><FaPhone className="ml-2"/>شماره تلفن</div>
+                                <div className="row justify-content-start align-items-center"><FaPhone className="ml-2 text-orange"/>شماره تلفن</div>
                             </div>
                             <div className="col">
                                 <div className="row justify-content-start">{this.state.phone_number}</div>
@@ -179,7 +179,7 @@ class ProfileComponent extends Component  {
                     <div className="col-sm-6">
                         <div className="row">
                             <div className="col">
-                                <div className="row justify-content-start align-items-center"><MdGroup className="ml-2"/>جنسیت</div>
+                                <div className="row justify-content-start align-items-center"><MdGroup className="ml-2 text-purple" style={{fontSize:"1.4rem"}}/>جنسیت</div>
                             </div>
                             <div className="col">
                                 <div className="row justify-content-start">
@@ -191,7 +191,7 @@ class ProfileComponent extends Component  {
                     <div className="col-sm-6">
                         <div className="row">
                             <div className="col">
-                                <div className="row justify-content-start align-items-center"><FaBookReader className="ml-2" />تحصیلات</div>
+                                <div className="row justify-content-start align-items-center"><FaBookReader className="ml-2 text-purple" />تحصیلات</div>
                             </div>
                             <div className="col">
                                 <div className="row justify-content-start">{this.state.gradeLabel}</div>
@@ -204,7 +204,7 @@ class ProfileComponent extends Component  {
                     <div className="col-sm-6">
                         <div className="row">
                             <div className="col">
-                                <div className="row justify-content-start align-items-center"><IoMdCalendar className="ml-2"/>تاریخ ورود</div>
+                                <div className="row justify-content-start align-items-center"><IoMdCalendar className="ml-2 text-yellow" style={{fontSize:"1.4rem"}}/>تاریخ ورود</div>
                             </div>
                             <div className="col">
                                 <div className="row justify-content-start">{this.state.entering_year}</div>
@@ -214,7 +214,7 @@ class ProfileComponent extends Component  {
                     <div className="col-sm-6">
                         <div className="row">
                             <div className="col">
-                                <div className="row justify-content-start align-items-center"><FaUserGraduate className="ml-2"/>تاریخ فارغ التحصیلی</div>
+                                <div className="row justify-content-start align-items-center"><FaUserGraduate className="ml-2 text-yellow "/>تاریخ فارغ التحصیلی</div>
                             </div>
                             <div className="col">
                                 <div className="row justify-content-start">{this.state.graduate_year}</div>
@@ -226,7 +226,7 @@ class ProfileComponent extends Component  {
                 <hr/>
                 <div className="row my-4 mr-2">
                     <div className="col">
-                        <div className="row justify-content-start align-items-center"><FaUniversity className="ml-2" />دانشگاه</div>
+                        <div className="row justify-content-start align-items-center"><FaUniversity className="ml-2 text-gray" />دانشگاه</div>
                     </div>
                     <div className="col">
                         <div className="row justify-content-start">{this.state.university}</div>
@@ -236,7 +236,7 @@ class ProfileComponent extends Component  {
 
                 <div className="row my-4 mr-2">
                     <div className="col">
-                        <div className="row justify-content-start align-items-center"><FaCommentAlt className="ml-2"/>بیوگرافی</div>
+                        <div className="row justify-content-start align-items-center"><FaCommentAlt className="ml-2 text-indigo"/>بیوگرافی</div>
                     </div>
                     <div className="col">
                         <div className="row justify-content-start">{this.state.bio}</div>
@@ -246,7 +246,7 @@ class ProfileComponent extends Component  {
 
                 <div className="row my-4 mr-2 align-items-center">
                     <div className="col">
-                        <div className="row justify-content-start align-items-center"><GoGlobe className="ml-2"/>حساب اجتماعی</div>
+                        <div className="row justify-content-start align-items-center"><GoGlobe className="ml-2 text-blue" style={{fontSize:"1.4rem"}}/>حساب اجتماعی</div>
                     </div>
                     <div className="col">
                         <div className="row justify-content-start">

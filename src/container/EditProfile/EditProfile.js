@@ -3,44 +3,59 @@ import SideNavbarXs from "../../Components/SideNavbar-xs/SideNavbar-xs";
 import SideNavbarComponent from "../../Components/SideNavbar/SideNavbar";
 import "./EditProfile.scss";
 import Dropdown from 'react-dropdown';
+import "react-dropdown/style.css";
 import DatePicker from "react-datepicker2";
 import {FormControl, InputGroup} from "react-bootstrap";
-import {FaUserAlt ,FaRegIdBadge, FaPhone, FaBookReader, FaUniversity, FaCommentAlt, FaUserGraduate, FaUserTag} from "react-icons/fa";
-import {IoMdMail, IoMdCalendar,IoMdFingerPrint} from "react-icons/io";
+import {
+    FaUserAlt,
+    FaRegIdBadge,
+    FaPhone,
+    FaBookReader,
+    FaUniversity,
+    FaCommentAlt,
+    FaUserGraduate,
+    FaUserTag
+} from "react-icons/fa";
+import {IoMdMail, IoMdCalendar, IoMdFingerPrint} from "react-icons/io";
 import {MdGroup} from "react-icons/md";
 import {GoGlobe} from "react-icons/go";
 import {TagInput} from "reactjs-tag-input";
 import {Button} from "react-bootstrap";
 import MagicDropzone from "react-magic-dropzone";
 import Cookies from "js-cookie";
+
 class EditProfileContainer extends Component {
     state = {
         formats: ".jpg, .jpeg, .png",
         previews: null,
-        edited : {
-            tags : [],
-            username : "",
-            first_name : "",
-            last_name : "",
-            email : "",
-            image : null,
-            birthday : "",
+        edited: {
+            tags: [],
+            username: "",
+            first_name: "",
+            last_name: "",
+            email: "",
+            image: null,
+            birthday: "",
             phone_number: "",
-            gender : "",
-            grade : "",
+            gender: "",
+            grade: "",
             university: "",
-            entering_year : "",
-            graduate_year : "",
-            value : "",
+            entering_year: "",
+            graduate_year: "",
+            value: "",
             social_account: [],
         }
     };
-    async getDetails () {
 
-        try{
+    componentWillMount() {
+    }
+
+    async getDetails() {
+
+        try {
             const url = "http://127.0.0.1:8000/authentication/profile/";
             const response = await fetch(`${url}`, {
-                method : "GET",
+                method: "GET",
                 headers:
                     {
                         Authorization: "JWT" + `${Cookies.get("JWTToken")}`
@@ -48,15 +63,16 @@ class EditProfileContainer extends Component {
 
             });
             response.then(req => req.json).then(req => this.saveData(req));
-            if (!response.ok){
+            if (!response.ok) {
                 console.log("OHH BadRequest!");
                 throw Error(response.statusText);
             }
 
-        }catch (e) {
-            console.log(e,"The server is Down!");
+        } catch (e) {
+            console.log(e, "The server is Down!");
         }
     }
+
     saveData = (json) => {
         const arr = [
             "username",
@@ -75,9 +91,9 @@ class EditProfileContainer extends Component {
             "id_code",
             "social_account",
         ];
-        arr.forEach(function (element){
+        arr.forEach(function (element) {
             // this.setState({[element] : json[element]})
-            this.setState(prevState=>{
+            this.setState(prevState => {
                 const newState = {...prevState};
                 newState.edited[element] = json[element];
                 return newState
@@ -87,21 +103,21 @@ class EditProfileContainer extends Component {
 
     static async handleSubmit(event, data) {
         event.preventDefault();
-        try{
+        try {
             const url = "http://127.0.0.1:8000/authentication/registration/";
-            const response = await fetch(`${url}`,{
-                method : "PUT",
-                body : JSON.stringify(data),
-                headers : {
+            const response = await fetch(`${url}`, {
+                method: "PUT",
+                body: JSON.stringify(data),
+                headers: {
                     Authorization: "JWT" + `${Cookies.get("JWTToken")}`
                 }
             });
-            if(!response.ok){
+            if (!response.ok) {
                 console.log("OHH BadRequest!");
                 throw Error(response.statusText);
             }
-        }catch (e) {
-            console.log(e,"The server is Down!")
+        } catch (e) {
+            console.log(e, "The server is Down!")
         }
     }
 
@@ -110,7 +126,7 @@ class EditProfileContainer extends Component {
         // this.setState({tags},()=>{console.log(this.state)})
         this.setState(prevState => {
             const newState = {...prevState};
-            newState.edited["tags"]  = tags;
+            newState.edited["tags"] = tags;
             return newState;
         })
     };
@@ -122,13 +138,15 @@ class EditProfileContainer extends Component {
             const newState = {...prevState};
             newState.edited[name] = value;
             return newState;
-        },()=>{console.log(this.state.edited)})
+        }, () => {
+            console.log(this.state.edited)
+        })
     };
 
     genderHandleChange = (e) => {
         const value = e.value;
         const label = e.label;
-        this.setState({genderLabel : label});
+        this.setState({genderLabel: label});
         // this.setState({ gender: value },()=>{console.log(this.state)});
         this.setState(prevState => {
             const newState = {...prevState};
@@ -140,7 +158,7 @@ class EditProfileContainer extends Component {
     gradeHandleChange = (e) => {
         const value = e.value;
         const label = e.label;
-        this.setState({gradeLabel : label})
+        this.setState({gradeLabel: label})
         // this.setState({ grade: value },()=>{console.log(this.state)});
         this.setState(prevState => {
             const newState = {...prevState};
@@ -158,47 +176,56 @@ class EditProfileContainer extends Component {
             newState.edited["image"] = cont;
             newState.previews = accepted;
             return newState;
-        },()=>{console.log(this.state.edited.image)})
+        }, () => {
+            console.log(this.state.edited.image)
+        })
 
     };
+
     render() {
         const genderOptions = [
-            { value: 1, label: 'مرد' },
-            { value: 2, label: 'زن'},
+            {value: 1, label: 'مرد'},
+            {value: 2, label: 'زن'},
         ];
         const gradeOptions = [
-            {value : 1, label:"دیپلم"},
-            {value : 2, label:"کارشناسی"},
-            {value : 3, label:"کارشاسی ارشد"},
-            {value : 4, label:"دکتری"}
+            {value: 1, label: "دیپلم"},
+            {value: 2, label: "کارشناسی"},
+            {value: 3, label: "کارشاسی ارشد"},
+            {value: 4, label: "دکتری"}
         ];
 
 
         const EditingFrom = (
-            <form onSubmit={(event)=>{EditProfileContainer.handleSubmit(event,this.state.edited)}} className="mb-5">
+            <form onSubmit={(event) => {
+                EditProfileContainer.handleSubmit(event, this.state.edited)
+            }} className="mb-5">
                 <div className="row align-items-center justify-content-center my-4 mr-2">
-                            <div className="Dropzone-page">
-                                <MagicDropzone
-                                    className = "Dropzone"
-                                    accept = {this.state.formats}
-                                    onDrop = {this.onDrop}
-                                >
-                                    <div className="Dropzone-content">
-                                        {this.state.previews != null ? (
+                    <div className="Dropzone-page">
+                        <MagicDropzone
+                            className="Dropzone"
+                            accept={this.state.formats}
+                            onDrop={this.onDrop}
+                        >
+                            <div className="Dropzone-content">
+                                {this.state.previews != null ? (
 
-                                            <img alt="ویرایش عکس" className="Dropzone-img" src={this.state.previews} />
+                                    <img alt="ویرایش عکس" className="Dropzone-img" src={this.state.previews}/>
 
-                                        ) : (
-                                            "برای بارگذاری بکشید یا کلیک کنید"
-                                        )}
-                                    </div>
-                                </MagicDropzone>
+                                ) : (
+                                    "برای بارگذاری بکشید یا کلیک کنید"
+                                )}
                             </div>
+                        </MagicDropzone>
+                    </div>
                 </div>
                 <hr/>
                 <div className="row my-4 mr-2">
                     <div className="col">
-                        <div className="row justify-content-start"><FaRegIdBadge className="ml-2"/>نام کاربری</div>
+                        <div className="row justify-content-start align-items-center"><FaRegIdBadge
+                            className="ml-2 text-indigo"
+                            style={{fontSize: "1.4rem"}}/>نام
+                            کاربری
+                        </div>
                     </div>
                     <div className="col">
                         <div className="row justify-content-start">{this.state.edited.username}</div>
@@ -210,17 +237,19 @@ class EditProfileContainer extends Component {
                     <div className="col-sm-6">
                         <div className="row align-items-center">
                             <div className="col-3">
-                                <div className="row justify-content-start"><FaUserAlt className="ml-2"/>نام</div>
+                                <div className="row justify-content-start align-items-center"><FaUserAlt
+                                    className="ml-2 text-muted"/>نام
+                                </div>
                             </div>
                             <div className="col-8">
                                 <div className="row justify-content-start">
-                                    <InputGroup  className="m-0">
+                                    <InputGroup className="m-0">
                                         <FormControl
-                                            onChange = {this.handleChange}
-                                            name ="first_name"
-                                            value = {this.state.edited.first_name}
+                                            onChange={this.handleChange}
+                                            name="first_name"
+                                            value={this.state.edited.first_name}
                                             type="text"
-                                            className = "input-style"
+                                            className="input-style"
                                         />
                                     </InputGroup>
                                 </div>
@@ -230,17 +259,19 @@ class EditProfileContainer extends Component {
                     <div className="col-sm-6">
                         <div className="row align-items-center">
                             <div className="col-3">
-                                <div className="row justify-content-start"><FaUserTag className="ml-2"/>نام خانوادگی</div>
+                                <div className="row justify-content-start align-items-center"  style={{fontSize:".9rem",textAlign:"center"}}><FaUserTag className="ml-2 text-muted"  style={{fontSize:"1.1rem"}}/>نام
+                                    خانوادگی
+                                </div>
                             </div>
                             <div className="col-8">
                                 <div className="row justify-content-start">
-                                    <InputGroup  className="m-0">
+                                    <InputGroup className="m-0">
                                         <FormControl
-                                            onChange = {this.handleChange}
-                                            name ="last_name"
-                                            value = {this.state.edited.last_name}
+                                            onChange={this.handleChange}
+                                            name="last_name"
+                                            value={this.state.edited.last_name}
                                             type="text"
-                                            className = "input-style"
+                                            className="input-style"
                                         />
                                     </InputGroup>
                                 </div>
@@ -253,17 +284,19 @@ class EditProfileContainer extends Component {
                     <div className="col-sm-6">
                         <div className="row align-items-center">
                             <div className="col-3">
-                                <div className="row justify-content-start"><IoMdFingerPrint className="ml-2"/>کدملی</div>
+                                <div className="row justify-content-start"><IoMdFingerPrint className="ml-2 text-blue"
+                                                                                            style={{fontSize: "1.4rem"}}/>کدملی
+                                </div>
                             </div>
                             <div className="col-8">
                                 <div className="row justify-content-start">
-                                    <InputGroup  className="m-0">
+                                    <InputGroup className="m-0">
                                         <FormControl
-                                            onChange = {this.handleChange}
-                                            name ="id_code"
-                                            value = {this.state.edited.id_code}
+                                            onChange={this.handleChange}
+                                            name="id_code"
+                                            value={this.state.edited.id_code}
                                             type="text"
-                                            className = "input-style"
+                                            className="input-style"
                                         />
                                     </InputGroup>
                                 </div>
@@ -273,17 +306,19 @@ class EditProfileContainer extends Component {
                     <div className="col-sm-6">
                         <div className="row align-items-center">
                             <div className="col-3">
-                                <div className="row justify-content-start"><IoMdMail className="ml-2"/>ایمیل</div>
+                                <div className="row justify-content-start align-items-center"><IoMdMail
+                                    className="ml-2 text-blue"/>ایمیل
+                                </div>
                             </div>
                             <div className="col-8">
                                 <div className="row justify-content-start">
-                                    <InputGroup  className="m-0">
+                                    <InputGroup className="m-0">
                                         <FormControl
-                                            onChange = {this.handleChange}
-                                            name ="email"
-                                            value = {this.state.edited.email}
+                                            onChange={this.handleChange}
+                                            name="email"
+                                            value={this.state.edited.email}
                                             type="email"
-                                            className = "input-style"
+                                            className="input-style"
                                         />
                                     </InputGroup>
                                 </div>
@@ -293,27 +328,35 @@ class EditProfileContainer extends Component {
                     <div className="col"></div>
                 </div>
                 <hr/>
-                <div className="row my-4 mr-2 align-items-center" >
+                <div className="row my-4 mr-2 align-items-center">
                     <div className="col-sm-6">
                         <div className="row align-items-center">
-                            <div className="col">
-                                <div className="row justify-content-start"><IoMdCalendar className="ml-2"/>تاریخ تولد</div>
+                            <div className="col-3">
+                                <div className="row justify-content-start"><IoMdCalendar className="ml-2 text-orange"
+                                                                                         style={{fontSize: "1.4rem"}}/>تاریخ
+                                    تولد
+                                </div>
                             </div>
-                            <div className="col">
-                                <div className="row justify-content-start">
-                                    <DatePicker
-                                        className = "setTextAlign"
-                                        onChange={value => {
-                                            this.setState(prevState => {
-                                                const newState = {...prevState};
-                                                newState.edited.birthday = value.locale('fa').format('jYYYY/jM/jD')
-                                                return newState;
-                                            },()=>{console.log(this.state.edited)})}}
+                            <div className="col-8">
+                                <div className="row justify-content-center">
+                                    <div className="w-100">
+                                        <DatePicker
+                                            className="setTextAlign"
+                                            onChange={value => {
+                                                this.setState(prevState => {
+                                                    const newState = {...prevState};
+                                                    newState.edited.birthday = value.locale('fa').format('jYYYY/jM/jD')
+                                                    return newState;
+                                                }, () => {
+                                                    console.log(this.state.edited)
+                                                })
+                                            }}
 
-                                        value={this.state.edited.value}
-                                        isGregorian={false}
-                                        timePicker = {false}
-                                    />
+                                            value={this.state.edited.value}
+                                            isGregorian={false}
+                                            timePicker={false}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -321,17 +364,20 @@ class EditProfileContainer extends Component {
                     <div className="col-sm-6">
                         <div className="row align-items-center">
                             <div className="col-3">
-                                <div className="row justify-content-start"><FaPhone className="ml-2"/>شماره تلفن</div>
+                                <div className="row justify-content-start align-items-center"><FaPhone
+                                    className="ml-2 text-orange"/>شماره
+                                    تلفن
+                                </div>
                             </div>
                             <div className="col-8">
                                 <div className="row justify-content-start">
-                                    <InputGroup  className="m-0">
+                                    <InputGroup className="m-0">
                                         <FormControl
-                                            onChange = {this.handleChange}
-                                            name ="phone_number"
-                                            value = {this.state.edited.phone_number}
+                                            onChange={this.handleChange}
+                                            name="phone_number"
+                                            value={this.state.edited.phone_number}
                                             type="phone"
-                                            className = "input-style"
+                                            className="input-style"
                                         />
                                     </InputGroup>
                                 </div>
@@ -344,11 +390,16 @@ class EditProfileContainer extends Component {
                     <div className="col-sm-6">
                         <div className="row align-items-center">
                             <div className="col-3">
-                                <div className="row justify-content-start"><MdGroup className="ml-2"/>جنسیت</div>
+                                <div className="row justify-content-start"><MdGroup className="ml-2 text-purple"
+                                                                                    style={{fontSize: "1.4rem"}}/>جنسیت
+                                </div>
                             </div>
                             <div className="col-8">
-                                <div className="row justify-content-start">
-                                    <Dropdown onChange={this.genderHandleChange} className="w-50 border" name="gender" options={genderOptions} value={this.state.genderLabel} placeholder = "انتخاب کنید" />
+                                <div className="row justify-content-center">
+                                    <Dropdown onChange={this.genderHandleChange} menuClassName='myMenuClassName'
+                                              controlClassName='myControlClassName' name="gender"
+                                              options={genderOptions} value={this.state.genderLabel}
+                                              placeholder="انتخاب کنید"/>
                                 </div>
                             </div>
                         </div>
@@ -356,13 +407,13 @@ class EditProfileContainer extends Component {
                     <div className="col-sm-6">
                         <div className="row align-items-center">
                             <div className="col-3">
-                                <div className="row justify-content-start"><FaBookReader className="ml-2" />تحصیلات</div>
+                                <div className="row justify-content-start"><FaBookReader className="ml-2 text-purple"/>تحصیلات
+                                </div>
                             </div>
                             <div className="col-8">
-                                <div className="row justify-content-start">
-                                    <InputGroup  className="m-0">
-                                        <Dropdown onChange={this.gradeHandleChange} className="w-50 border" name="grade" options={gradeOptions} value={this.state.gradeLabel} placeholder = "انتخاب کنید" />
-                                    </InputGroup>
+                                <div className="row justify-content-center">
+                                    <Dropdown onChange={this.gradeHandleChange} name="grade" options={gradeOptions}
+                                              value={this.state.gradeLabel} placeholder="انتخاب کنید"/>
                                 </div>
                             </div>
                         </div>
@@ -375,17 +426,18 @@ class EditProfileContainer extends Component {
                     <div className="col-sm-6">
                         <div className="row align-items-center">
                             <div className="col-3">
-                                <div className="row justify-content-start"><FaUniversity className="ml-2" />دانشگاه</div>
+                                <div className="row justify-content-start"><FaUniversity className="ml-2 text-gray"/>دانشگاه
+                                </div>
                             </div>
                             <div className="col-8">
                                 <div className="row justify-content-start">
-                                    <InputGroup  className="m-0">
+                                    <InputGroup className="m-0">
                                         <FormControl
-                                            onChange = {this.handleChange}
-                                            name ="university"
-                                            value = {this.state.edited.university}
+                                            onChange={this.handleChange}
+                                            name="university"
+                                            value={this.state.edited.university}
                                             type="text"
-                                            className = "input-style"
+                                            className="input-style"
                                         />
                                     </InputGroup>
                                 </div>
@@ -397,45 +449,61 @@ class EditProfileContainer extends Component {
                 <hr/>
                 <div className="row my-4 mr-2">
                     <div className="col-sm-6">
-                        <div className="row">
-                            <div className="col-4">
-                                <div className="row justify-content-start"><IoMdCalendar className="ml-2"/>تاریخ ورود</div>
+                        <div className="row align-items-center">
+                            <div className="col-3 w-100">
+                                <div className="row justify-content-start align-items-center"><IoMdCalendar
+                                    className="ml-2 text-yellow"
+                                    style={{fontSize: "1.3rem"}}/>تاریخ
+                                    ورود
+                                </div>
                             </div>
                             <div className="col-8">
-                                <div className="row justify-content-start">
-                                    <DatePicker
-                                        className = "setTextAlign"
-                                        onChange={value => {
-                                            this.setState(prevState => {
-                                                const newState = {...prevState};
-                                                newState.edited.entering_year = value.locale('fa').format('jYYYY/jM/jD')
-                                                return newState; })}}
-                                        value={this.state.edited.value}
-                                        isGregorian={false}
-                                        timePicker = {false}
-                                    />
+                                <div className="row justify-content-center">
+                                    <div className="w-100">
+                                        <DatePicker
+                                            className="setTextAlign"
+                                            onChange={value => {
+                                                this.setState(prevState => {
+                                                    const newState = {...prevState};
+                                                    newState.edited.entering_year = value.locale('fa').format('jYYYY/jM/jD')
+                                                    return newState;
+                                                })
+                                            }}
+                                            value={this.state.edited.value}
+                                            isGregorian={false}
+                                            timePicker={false}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="col-sm-6">
-                        <div className="row">
-                            <div className="col-5">
-                                <div className="row justify-content-start"><FaUserGraduate className="ml-2"/>تاریخ فارغ التحصیلی</div>
+                        <div className="row align-items-center">
+                            <div className="col-3">
+                                <div className="row justify-content-start" style={{fontSize: ".85rem"}}><FaUserGraduate
+                                    className="ml-2 text-yellow"
+                                    style={{fontSize: "1rem"}}/>فارغ
+                                    التحصیلی
+                                </div>
                             </div>
-                            <div className="col-7">
-                                <div className="row justify-content-start">
-                                    <DatePicker
-                                        className = "setTextAlign"
-                                        onChange={value => {
-                                            this.setState(prevState => {
-                                                const newState = {...prevState};
-                                                newState.edited.graduate_year = value.locale('fa').format('jYYYY/jM/jD')
-                                                return newState; })}}
-                                        value={this.state.edited.value}
-                                        isGregorian={false}
-                                        timePicker = {false}
-                                    />
+                            <div className="col-8">
+                                <div className="row justify-content-center">
+                                    <div className="w-100">
+                                        <DatePicker
+                                            className="setTextAlign"
+                                            onChange={value => {
+                                                this.setState(prevState => {
+                                                    const newState = {...prevState};
+                                                    newState.edited.graduate_year = value.locale('fa').format('jYYYY/jM/jD')
+                                                    return newState;
+                                                })
+                                            }}
+                                            value={this.state.edited.value}
+                                            isGregorian={false}
+                                            timePicker={false}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -445,17 +513,19 @@ class EditProfileContainer extends Component {
                 <hr/>
 
                 <div className="row my-4 mr-2 align-items-center">
-                    <div className="col-2">
-                        <div className="row justify-content-start"><FaCommentAlt className="ml-2"/>بیوگرافی</div>
+                    <div className="col-3">
+                        <div className="row justify-content-start align-items-center"><FaCommentAlt
+                            className="ml-2 text-indigo"/>بیوگرافی
+                        </div>
                     </div>
-                    <div className="col-9">
-                        <InputGroup  className="m-0">
+                    <div className="col-8">
+                        <InputGroup className="m-0">
                             <FormControl
-                                onChange = {this.handleChange}
-                                name ="bio"
-                                value = {this.state.edited.bio}
+                                onChange={this.handleChange}
+                                name="bio"
+                                value={this.state.edited.bio}
                                 type="text"
-                                className = "input-style"
+                                className="input-style"
                             />
                         </InputGroup>
                     </div>
@@ -464,19 +534,20 @@ class EditProfileContainer extends Component {
 
                 <div className="row my-4 mr-2">
                     <div className="col">
-                        <div className="row justify-content-start"><GoGlobe className="ml-2"/>حساب اجتماعی</div>
+                        <div className="row justify-content-start"><GoGlobe className="ml-2 text-blue"
+                                                                            style={{fontSize: "1.4rem"}}/>حساب اجتماعی
+                        </div>
                     </div>
                     <div className="col">
-                        <div className="row justify-content-start"><TagInput tags={this.state.edited.tags} onTagsChanged={this.onTagsChanged} /></div>
+                        <div className="row justify-content-start"><TagInput tags={this.state.edited.tags}
+                                                                             onTagsChanged={this.onTagsChanged}/></div>
                     </div>
                 </div>
                 <div className="row justify-content-center mt-5">
-                    <Button variant="success" size="lg" style = {{width:"25%"}}>ثبت</Button>
+                    <Button variant="success" size="lg" style={{width: "25%"}}>ثبت</Button>
                 </div>
             </form>
         );
-
-
 
 
         return (
@@ -488,8 +559,11 @@ class EditProfileContainer extends Component {
                             {EditingFrom}
                         </div>
                         <div className="hidden-sm hidden-md hidden-lg">
-                            <button onClick={() => {this.setState({showNav:true})}}>click</button>
-                            <SideNavbarXs ShowNav = {this.state.showNav} closeNav = {this.closeSideNavabr}/>
+                            <button onClick={() => {
+                                this.setState({showNav: true})
+                            }}>click
+                            </button>
+                            <SideNavbarXs ShowNav={this.state.showNav} closeNav={this.closeSideNavabr}/>
                         </div>
                     </div>
                 </div>
