@@ -1,65 +1,79 @@
 import React, {Component} from 'react';
-import "./Profile.css";
+import "./Profile.scss";
 import SideNavbarXs from "../../Components/SideNavbar-xs/SideNavbar-xs";
 import SideNavbarComponent from "../../Components/SideNavbar/SideNavbar";
-import {FaUserAlt ,FaRegIdBadge, FaPhone, FaBookReader, FaUniversity, FaCommentAlt, FaUserGraduate, FaUserTag} from "react-icons/fa";
-import {IoMdMail, IoMdCalendar,IoMdFingerPrint} from "react-icons/io";
+import {
+    FaUserAlt,
+    FaRegIdBadge,
+    FaPhone,
+    FaBookReader,
+    FaUniversity,
+    FaCommentAlt,
+    FaUserGraduate,
+    FaUserTag
+} from "react-icons/fa";
+import {IoMdMail, IoMdCalendar, IoMdFingerPrint} from "react-icons/io";
 import {MdGroup} from "react-icons/md";
 import {GoGlobe} from "react-icons/go";
 import {Button} from "react-bootstrap";
-import Cookies from "js-cookie";
 import User from "../../assets/user.png";
 import {SocialIcon} from "react-social-icons";
 
-class ProfileComponent extends Component  {
+class ProfileComponent extends Component {
     state = {
-        tags : [],
-        showNav : null,
-        username : "",
-        first_name : "",
-        last_name : "",
-        email : "",
-        image : null,
-        birthday : "",
-        phone_number : "",
-        gender : "",
-        grade : "",
-        university : "",
-        entering_year : "",
-        graduate_year : "",
-        bio : "",
-        id_code : "",
-        social_account : "",
+        tags: [],
+        showNav: null,
+        username: "",
+        first_name: "",
+        last_name: "",
+        email: "",
+        image: null,
+        birthday: "",
+        phone_number: "",
+        gender: "",
+        grade: "",
+        university: "",
+        entering_year: "",
+        graduate_year: "",
+        bio: "",
+        id_code: "",
+        social_account: "",
         value: "",
-        genderLabel : "",
-        gradeLabel:"",
+        genderLabel: "",
+        gradeLabel: "",
     };
 
     componentWillMount() {
         this.getDetails()
     }
-    async getDetails () {
 
-        try{
-            const url = "http://127.0.0.1:8000/authentication/profile/";
+    async getDetails() {
+
+        try {
+            const url = "http://localhost:3004/authentication/answer";
+
             const response = await fetch(`${url}`, {
-                method : "GET",
+                method: "GET",
                 headers:
                     {
-                        Authorization: "JWT" + `${Cookies.get("JWTToken")}`
+                        // Authorization: "JWT " + `${Cookies.get("JWTToken")}`
+                        'Content-Type': 'application/json'
                     },
 
             });
-            response.then(req => req.json).then(req => this.saveData(req));
-            if (!response.ok){
+            console.log(response);
+            const data = await response.json();
+            this.saveData(data);
+            if (!response.ok) {
                 console.log("OHH BadRequest!");
                 throw Error(response.statusText);
             }
 
-        }catch (e) {
-            console.log(e,"The server is Down!");
+        } catch (e) {
+            console.log(e, "The server is Down!");
         }
     }
+
     saveData = (json) => {
         const arr = [
             "username",
@@ -78,210 +92,266 @@ class ProfileComponent extends Component  {
             "id_code",
             "social_account",
         ];
-        arr.forEach(function (element){
-            this.setState({[element] : json[element]})
-        })
+        arr.forEach(element => (
+            this.setState({[element]: json[element]})
+        ))
     };
-    render(){
+
+    render() {
         const originalForm = (
             <div>
                 <div className="row justify-content-center my-4">
                     {this.state.image == null ?
-                        <img src={User} alt="profile" className="img-fluid" style={{maxWidth : "100px"}}/> :
-                        <img src={this.state.image} alt="profile" className="img-fluid" style={{maxWidth : "100px"}}/>
+                        <img src={User} alt="profile" className="img-fluid" style={{maxWidth: "100px"}}/> :
+                        <img src={this.state.image} alt="profile" className="img-fluid" style={{maxWidth: "100px"}}/>
                     }
                 </div>
-                <div className="row my-4 mr-2">
-                    <div className="col">
-                        <div className="row justify-content-start"><FaRegIdBadge className="ml-2 text-indigo" style={{fontSize:"1.4rem"}}/>نام کاربری</div>
-                    </div>
-                    <div className="col">
-                        <div className="row justify-content-start">{this.state.username}</div>
-                    </div>
-                    <div className="col"></div>
-                </div>
-                <hr/>
-                <div className="row my-4 mr-2">
+                <div className="row my-4 mr-2 align-items-center">
                     <div className="col-sm-6">
                         <div className="row">
-                            <div className="col">
-                                <div className="row justify-content-start"><FaUserAlt className="ml-2 text-muted"/>نام</div>
-                            </div>
-                            <div className="col">
-                                <div className="row justify-content-start">{this.state.first_name}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-sm-6">
-                        <div className="row">
-                            <div className="col">
-                                <div className="row justify-content-start"><FaUserTag className="ml-2 text-muted" style={{fontSize:"1.4rem"}}/> نام خانوادگی </div>
-                            </div>
-                            <div className="col">
-                                <div className="row justify-content-start">{this.state.last_name}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col"></div>
-                </div>
-                <hr/>
-                <div className="row my-4 mr-2">
-                    <div className="col-sm-6">
-                        <div className="row">
-                            <div className="col">
-                                <div className="row justify-content-start align-items-center"><IoMdFingerPrint className="ml-2 text-blue" style={{fontSize:"1.4rem"}}/> کدملی</div>
-                            </div>
-                            <div className="col">
-                                <div className="row justify-content-start">{this.state.id_code}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-sm-6">
-                        <div className="row">
-                            <div className="col">
-                                <div className="row justify-content-start align-items-center"><IoMdMail className="ml-2 text-blue"/>ایمیل</div>
-                            </div>
-                            <div className="col">
-                                <div className="row justify-content-start">{this.state.email}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col"></div>
-                </div>
-                <hr/>
-
-                <div className="row my-4 mr-2">
-                    <div className="col-sm-6">
-                        <div className="row">
-                            <div className="col">
-                                <div className="row justify-content-start align-items-center"><IoMdCalendar className="ml-2 text-orange" style={{fontSize:"1.4rem"}}/>تاریخ تولد</div>
-                            </div>
-                            <div className="col">
-                                <div className="row justify-content-start">
-                                    <div className="row justify-content-start">{this.state.birthday}</div>
+                            <div className="col-3">
+                                <div className="row justify-content-start align-items-center text-gray"><FaRegIdBadge
+                                    className="ml-2 text-indigo"
+                                    style={{fontSize: "1.4rem"}}/>نام
+                                    کاربری
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="col-sm-6">
-                        <div className="row">
-                            <div className="col">
-                                <div className="row justify-content-start align-items-center"><FaPhone className="ml-2 text-orange"/>شماره تلفن</div>
-                            </div>
-                            <div className="col">
-                                <div className="row justify-content-start">{this.state.phone_number}</div>
+                            <div className="col-9">
+                                <div
+                                    className="row justify-content-center align-items-center">{this.state.username}</div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <hr/>
-                <div className="row my-4 mr-2">
+                <div className="row my-4 mr-2 align-items-center">
                     <div className="col-sm-6">
                         <div className="row">
-                            <div className="col">
-                                <div className="row justify-content-start align-items-center"><MdGroup className="ml-2 text-purple" style={{fontSize:"1.4rem"}}/>جنسیت</div>
-                            </div>
-                            <div className="col">
-                                <div className="row justify-content-start">
-                                    <div className="row justify-content-start">{this.state.genderLabel}</div>
+                            <div className="col-3">
+                                <div className="row justify-content-start align-items-center text-gray"><FaUserAlt
+                                    className="ml-2 text-muted"/>نام
                                 </div>
                             </div>
+                            <div className="col-9">
+                                <div
+                                    className="row justify-content-center align-items-center">{this.state.first_name}</div>
+                            </div>
                         </div>
                     </div>
                     <div className="col-sm-6">
-                        <div className="row">
-                            <div className="col">
-                                <div className="row justify-content-start align-items-center"><FaBookReader className="ml-2 text-purple" />تحصیلات</div>
+                        <div className="row align-items-center">
+                            <div className="col-3">
+                                <div className="row justify-content-start align-items-center text-gray"
+                                     style={{fontSize: ".9rem"}}><FaUserTag
+                                    className="ml-2 text-muted"
+                                    style={{fontSize: "1.4rem"}}/> نام
+                                    خانوادگی
+                                </div>
                             </div>
-                            <div className="col">
-                                <div className="row justify-content-start">{this.state.gradeLabel}</div>
+                            <div className="col-9">
+                                <div
+                                    className="row justify-content-center align-items-center ">{this.state.last_name}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col"></div>
+                </div>
+                <hr/>
+                <div className="row my-4 mr-2 align-items-center">
+                    <div className="col-sm-6">
+                        <div className="row align-items-center">
+                            <div className="col-3">
+                                <div className="row justify-content-start align-items-center text-gray"><IoMdFingerPrint
+                                    className="ml-2 text-blue" style={{fontSize: "1.4rem"}}/> کدملی
+                                </div>
+                            </div>
+                            <div className="col-9">
+                                <div
+                                    className="row justify-content-center align-items-center farsiNumbers">{this.state.id_code}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-sm-6">
+                        <div className="row align-items-center">
+                            <div className="col-3">
+                                <div className="row justify-content-start align-items-center text-gray"><IoMdMail
+                                    className="ml-2 text-blue"/>ایمیل
+                                </div>
+                            </div>
+                            <div className="col-9">
+                                <div className="row justify-content-center align-items-center">{this.state.email}</div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <hr/>
-                <div className="row my-4 mr-2">
+
+                <div className="row my-4 mr-2 align-items-center">
                     <div className="col-sm-6">
-                        <div className="row">
-                            <div className="col">
-                                <div className="row justify-content-start align-items-center"><IoMdCalendar className="ml-2 text-yellow" style={{fontSize:"1.4rem"}}/>تاریخ ورود</div>
+                        <div className="row align-items-center">
+                            <div className="col-3">
+                                <div className="row justify-content-start align-items-center text-gray"><IoMdCalendar
+                                    className="ml-2 text-orange" style={{fontSize: "1.4rem"}}/>تاریخ تولد
+                                </div>
                             </div>
-                            <div className="col">
-                                <div className="row justify-content-start">{this.state.entering_year}</div>
+                            <div className="col-9">
+                                <div
+                                    className="row justify-content-center align-items-center farsiNumbers">{this.state.birthday}</div>
                             </div>
                         </div>
                     </div>
                     <div className="col-sm-6">
-                        <div className="row">
-                            <div className="col">
-                                <div className="row justify-content-start align-items-center"><FaUserGraduate className="ml-2 text-yellow "/>تاریخ فارغ التحصیلی</div>
+                        <div className="row align-items-center">
+                            <div className="col-3">
+                                <div className="row justify-content-start align-items-center text-gray"><FaPhone
+                                    className="ml-2 text-orange"/>شماره تلفن
+                                </div>
                             </div>
-                            <div className="col">
-                                <div className="row justify-content-start">{this.state.graduate_year}</div>
+                            <div className="col-9">
+                                <div
+                                    className="row justify-content-center align-items-center farsiNumbers">{this.state.phone_number}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div className="row my-4 mr-2 align-items-center">
+                    <div className="col-sm-6">
+                        <div className="row align-items-center">
+                            <div className="col-3">
+                                <div className="row justify-content-start align-items-center text-gray"><MdGroup
+                                    className="ml-2 text-purple" style={{fontSize: "1.4rem"}}/>جنسیت
+                                </div>
+                            </div>
+                            <div className="col-9">
+                                <div className="row justify-content-center align-items-center">{this.state.gender}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-sm-6">
+                        <div className="row align-items-center">
+                            <div className="col-3">
+                                <div className="row justify-content-start align-items-center text-gray"><FaBookReader
+                                    className="ml-2 text-purple"/>تحصیلات
+                                </div>
+                            </div>
+                            <div className="col-9">
+                                <div className="row justify-content-center align-items-center">{this.state.grade}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div className="row my-4 mr-2 align-items-center">
+                    <div className="col-sm-6">
+                        <div className="row align-items-center">
+                            <div className="col-3">
+                                <div className="row justify-content-start align-items-center text-gray"><IoMdCalendar
+                                    className="ml-2 text-yellow" style={{fontSize: "1.4rem"}}/>تاریخ ورود
+                                </div>
+                            </div>
+                            <div className="col-9">
+                                <div
+                                    className="row justify-content-center farsiNumbers align-items-center">{this.state.entering_year}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-sm-6">
+                        <div className="row align-items-center">
+                            <div className="col-3">
+                                <div className="row justify-content-start align-items-center text-gray"
+                                     style={{fontSize: ".85rem"}}><FaUserGraduate
+                                    className="ml-2 text-yellow "/>فارغ التحصیلی
+                                </div>
+                            </div>
+                            <div className="col-9">
+                                <div
+                                    className="row justify-content-center align-items-center farsiNumbers">{this.state.graduate_year}</div>
                             </div>
                         </div>
                     </div>
 
                 </div>
                 <hr/>
-                <div className="row my-4 mr-2">
-                    <div className="col">
-                        <div className="row justify-content-start align-items-center"><FaUniversity className="ml-2 text-gray" />دانشگاه</div>
-                    </div>
-                    <div className="col">
-                        <div className="row justify-content-start">{this.state.university}</div>
-                    </div>
-                </div>
-                <hr/>
-
-                <div className="row my-4 mr-2">
-                    <div className="col">
-                        <div className="row justify-content-start align-items-center"><FaCommentAlt className="ml-2 text-indigo"/>بیوگرافی</div>
-                    </div>
-                    <div className="col">
-                        <div className="row justify-content-start">{this.state.bio}</div>
+                <div className="row my-4 mr-2 align-items-center">
+                    <div className="col-sm-6">
+                        <div className="row">
+                            <div className="col-3">
+                                <div className="row justify-content-start align-items-center text-gray"><FaUniversity
+                                    className="ml-2 text-gray"/>دانشگاه
+                                </div>
+                            </div>
+                            <div className="col-9">
+                                <div
+                                    className="row justify-content-center align-items-center">{this.state.university}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <hr/>
 
                 <div className="row my-4 mr-2 align-items-center">
                     <div className="col">
-                        <div className="row justify-content-start align-items-center"><GoGlobe className="ml-2 text-blue" style={{fontSize:"1.4rem"}}/>حساب اجتماعی</div>
+                        <div className="row">
+                            <div className="col-2">
+                                <div className="row justify-content-start align-items-center text-gray"><FaCommentAlt
+                                    className="ml-2 text-indigo"/>بیوگرافی
+                                </div>
+                            </div>
+                            <div className="col-10">
+                                <div className="row justify-content-center align-items-center">{this.state.bio}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <hr/>
+
+                <div className="row my-4 mr-2 align-items-center">
+                    <div className="col">
+                        <div className="row justify-content-start align-items-center text-gray"><GoGlobe
+                            className="ml-2 text-blue" style={{fontSize: "1.4rem"}}/>حساب اجتماعی
+                        </div>
                     </div>
                     <div className="col">
-                        <div className="row justify-content-start">
-                            {this.state.tags.map(element => <SocialIcon url={"https://"+`${element}`}/>)}
+                        <div className="row justify-content-start align-items-center">
+                            {this.state.tags.map(element => <SocialIcon url={"https://" + `${element}`}/>)}
                         </div>
                     </div>
                 </div>
             </div>
         );
 
-    return (
-        <div className="row">
-            <div className="col-lg-10 backgroundStyle col-md-9 min-vh-100">
-                <div className="container-fluid w-75 mt-5 directionToLeft ">
+        return (
+            <div className="row">
+                <div className="col-lg-10 backgroundStyle col-md-9 min-vh-100">
+                    <div className="container-fluid w-75 mt-5 directionToLeft ">
 
-                    <div className="container bg-white mb-5 border-shape border shadow p-4">
-                        <div className="row justify-content-end ml-2">
-                            <Button className="justify-content-end" onClick = {()=>{this.props.history.push(`/edit`)}} >ویرایش</Button>
+                        <div className="container bg-white mb-5 border-shape border shadow p-4">
+                            <div className="row justify-content-end ml-2">
+                                <Button className="justify-content-end" onClick={() => {
+                                    this.props.history.push(`/edit`)
+                                }}>ویرایش</Button>
+                            </div>
+                            {originalForm}
                         </div>
-                        {originalForm}
-                    </div>
-                    <div className="hidden-sm hidden-md hidden-lg">
-                        <button onClick={() => {this.setState({showNav:true})}}>click</button>
-                        <SideNavbarXs ShowNav = {this.state.showNav} closeNav = {this.closeSideNavabr}/>
+                        <div className="hidden-sm hidden-md hidden-lg">
+                            <button onClick={() => {
+                                this.setState({showNav: true})
+                            }}>click
+                            </button>
+                            <SideNavbarXs ShowNav={this.state.showNav} closeNav={this.closeSideNavabr}/>
+                        </div>
                     </div>
                 </div>
+                <div className="one-edge-shadow p-0 mt-5 col-lg-2 col-3 hidden-xs">
+                    <SideNavbarComponent/>
+                </div>
             </div>
-            <div className="one-edge-shadow p-0 mt-5 col-lg-2 col-3 hidden-xs">
-                <SideNavbarComponent/>
-            </div>
-        </div>
 
 
-
-    );}
+        );
+    }
 };
 
 export default ProfileComponent;

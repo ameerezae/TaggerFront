@@ -21,6 +21,17 @@ body {
     font-family: "Vazir";
 }
 
+@font-face {
+    src : url("./fonts/F_MITRA.TTF");
+    font-family: "Mitra";
+}
+
+@font-face {
+    src : url("./fonts/F_yekan.ttf");
+    font-family: "Yekan";
+}
+
+
 .directionToLeft {
     direction: rtl;
     text-align: right;
