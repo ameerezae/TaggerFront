@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5e15bef4-5222-4a88-b915-8b57e88075a2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/Login/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/Profile/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/Profile/Profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/Profile/Profile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/Profile/Profile.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,10 +47,13 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
@@ -96,6 +99,7 @@
       <workItem from="1569394031932" duration="15231000" />
       <workItem from="1569480844418" duration="8624000" />
       <workItem from="1570094030901" duration="4463000" />
+      <workItem from="1570606991645" duration="6958000" />
     </task>
     <servers />
   </component>
@@ -107,7 +111,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
