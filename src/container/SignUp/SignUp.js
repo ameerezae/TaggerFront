@@ -12,6 +12,7 @@ class SignUpContainer extends Component {
         },
         doesExistUsername: null,
         idForUsername : "",
+        error : [],
     };
 
     async requestForCheckUsername(username) {
@@ -77,7 +78,7 @@ class SignUpContainer extends Component {
 
     };
 
-    static async handleSubmit(event, data) {
+    async handleSubmit(event, data) {
         event.preventDefault();
         try{
             const url = "http://127.0.0.1:8000/authentication/registration/";
@@ -88,6 +89,14 @@ class SignUpContainer extends Component {
                         "Content-type" : "application/json"
                     }
                 });
+            if(response.status === 400){
+                const data = response.json();
+                Object.keys(data).forEach((key,index) => {
+                    data[key].forEach(element=>{
+                        this.state.error.push(element);
+                    })
+                })
+            }
             if(!response.ok){
                 console.log("OHH BadRequest!");
                 throw Error(response.statusText);
@@ -106,7 +115,7 @@ class SignUpContainer extends Component {
                     <p className="signup-title mt-3">ثبت نام </p>
                 </div>
                 <hr/>
-                <form onSubmit={(event) => SignUpContainer.handleSubmit(event, this.state.data)}>
+                <form onSubmit={(event) => this.handleSubmit(event, this.state.data)}>
                     <div className="row justify-content-end">
                         <h2 className="id-input-field mt-3">نام کاربری</h2>
                     </div>
@@ -189,6 +198,14 @@ class SignUpContainer extends Component {
                             </div>
                         </div>
                     </div>
+                    {this.state.error.length !== 0?
+                        <div className="row justify-content-center" >
+                            <div className="alert alert-danger" role="alert">
+                                {this.state.error.map(element => (element))}
+                            </div>
+
+                        </div> :null
+                    }
                     <div className="row justify-content-center">
                         <Button id="button" className="mt-4 mb-4 button-submit-signup" type="submit" variant="success"
                                 size="md">
