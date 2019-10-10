@@ -28,8 +28,13 @@ class EditProfileContainer extends Component {
     state = {
         formats: ".jpg, .jpeg, .png",
         previews: null,
+        gradeLabel : "",
+        genderLabel : "",
+        dateValue : "",
         edited: {
             tags: [],
+            id_code: "",
+            bio : "",
             username: "",
             first_name: "",
             last_name: "",
@@ -42,12 +47,12 @@ class EditProfileContainer extends Component {
             university: "",
             entering_year: "",
             graduate_year: "",
-            value: "",
             social_account: [],
         }
     };
 
     componentWillMount() {
+        this.getDetails();
     }
 
     async getDetails() {
@@ -62,7 +67,8 @@ class EditProfileContainer extends Component {
                     },
 
             });
-            response.then(req => req.json).then(req => this.saveData(req));
+            const data = await response.json();
+            this.saveData(data)
             if (!response.ok) {
                 console.log("OHH BadRequest!");
                 throw Error(response.statusText);
@@ -92,7 +98,6 @@ class EditProfileContainer extends Component {
             "social_account",
         ];
         arr.forEach(function (element) {
-            // this.setState({[element] : json[element]})
             this.setState(prevState => {
                 const newState = {...prevState};
                 newState.edited[element] = json[element];
@@ -109,7 +114,7 @@ class EditProfileContainer extends Component {
                 method: "PUT",
                 body: JSON.stringify(data),
                 headers: {
-                    Authorization: "JWT" + `${Cookies.get("JWTToken")}`
+                    Authorization: "JWT " + `${Cookies.get("JWTToken")}`
                 }
             });
             if (!response.ok) {
@@ -146,6 +151,7 @@ class EditProfileContainer extends Component {
     genderHandleChange = (e) => {
         const value = e.value;
         const label = e.label;
+        console.log(value,label);
         this.setState({genderLabel: label});
         // this.setState({ gender: value },()=>{console.log(this.state)});
         this.setState(prevState => {
@@ -176,8 +182,6 @@ class EditProfileContainer extends Component {
             newState.edited["image"] = cont;
             newState.previews = accepted;
             return newState;
-        }, () => {
-            console.log(this.state.edited.image)
         })
 
     };
@@ -352,7 +356,7 @@ class EditProfileContainer extends Component {
                                                 })
                                             }}
 
-                                            value={this.state.edited.value}
+                                            value={this.state.dateValue}
                                             isGregorian={false}
                                             timePicker={false}
                                         />
@@ -469,7 +473,7 @@ class EditProfileContainer extends Component {
                                                     return newState;
                                                 })
                                             }}
-                                            value={this.state.edited.value}
+                                            value={this.state.dateValue}
                                             isGregorian={false}
                                             timePicker={false}
                                         />
@@ -499,7 +503,7 @@ class EditProfileContainer extends Component {
                                                     return newState;
                                                 })
                                             }}
-                                            value={this.state.edited.value}
+                                            value={this.state.dateValue}
                                             isGregorian={false}
                                             timePicker={false}
                                         />

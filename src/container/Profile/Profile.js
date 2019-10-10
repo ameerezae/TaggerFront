@@ -50,7 +50,7 @@ class ProfileComponent extends Component {
     async getDetails() {
 
         try {
-            const url = "http://localhost:3004/authentication/answer";
+            const url = "http://localhost:3004/profile/";
 
             const response = await fetch(`${url}`, {
                 method: "GET",
@@ -61,7 +61,7 @@ class ProfileComponent extends Component {
                     },
 
             });
-            console.log(response);
+            console.log(response.status,"STATUS",typeof response.status);
             const data = await response.json();
             this.saveData(data);
             if (!response.ok) {
