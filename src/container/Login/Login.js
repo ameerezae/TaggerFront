@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
-import "./Login.css";
+import "./Login.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {TextInput} from "react-responsive-ui"
+import "react-responsive-ui/style.css";
+import LoginPic from "../../assets/img-01.png";
 import {InputGroup, FormControl, Button} from 'react-bootstrap';
 
 class LoginContainer extends Component {
@@ -38,35 +41,32 @@ class LoginContainer extends Component {
             console.log(e, "The server is Down!");
         }
     }
+
     showError = (json) => {
-        if(this.state.data.username.length === 0){
-            this.setState({error : json["non_field_errors"][0]})
-        }
-        else if(this.state.data.password.length === 0){
-            this.setState({error : json["password"][0]})
-        }
-        else {
-            this.setState({error : json["non_field_errors"][0]})
+        if (this.state.data.username.length === 0) {
+            this.setState({error: json["non_field_errors"][0]})
+        } else if (this.state.data.password.length === 0) {
+            this.setState({error: json["password"][0]})
+        } else {
+            this.setState({error: json["non_field_errors"][0]})
         }
     };
-    hadnleChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
+    hadnleChange = (name, value) => {
+        console.log(name, value, "NAVL")
         this.setState(prevState => {
             const newState = {...prevState};
             newState.data[name] = value;
             return newState;
         });
-        console.log(this.state.data)
     };
 
     render() {
 
 
         const loginForm = (
-            <div className="center container">
+            <div className="center container py-4">
                 <div className="row justify-content-center">
-                    <p className="login-title mt-3"> ورود به پنل </p>
+                    <p className="login-title mt-3"> ورود </p>
                 </div>
                 <hr/>
                 <div className="row direct-to-signup-box">
@@ -82,53 +82,79 @@ class LoginContainer extends Component {
 
                 </div>
                 <hr/>
-                <form onSubmit={event => this.handleSubmit(event, this.state.data)}>
-                    <div className="row justify-content-end">
-                        <h2 className="email-input-field mt-3">نام کاربری</h2>
+                <div className="row align-items-center">
+                    <div className="col-sm-6 col-md-6">
+                        <div className="row align-items-center justify-content-center">
+                            <img src={LoginPic} alt="img" className="img-fluid" width="200px" height="200px"/>
+                        </div>
                     </div>
-                    <div className="row justify-content-center">
-                        <InputGroup className="mb-3 mt-2 email-input-login">
-                            <FormControl
-                                onChange={this.hadnleChange}
-                                name="username"
-                                value={this.state.data.Email}
-                                id="email" type="text"
-                                className="placeHolder-input input-style"
-                                placeholder="نام کاربری خودرا وارد نمایید"
-                            />
-                        </InputGroup>
-                    </div>
-                    <div className="row justify-content-end">
-                        <h2 className="password-input-field mt-4">رمزعبور</h2>
-                    </div>
-                    <div className="row justify-content-center">
-                        <InputGroup className="mb-3 mt-2 password-input-login">
-                            <FormControl
-                                onChange={this.hadnleChange}
-                                name="password"
-                                value={this.state.data.Password}
-                                id="password" type="password"
-                                className="placeHolder-input input-style"
-                                placeholder="رمز عبور خودرا وارد نمایید"
-                            />
-                        </InputGroup>
-                    </div>
-                    {this.state.error ?
-                        <div className="row justify-content-center" >
-                            <div className="alert alert-danger" role="alert">
-                                {this.state.error}
-                            </div>
+                    <div className="col-sm-6 col-md-6">
+                        <div className="row justify-content-center align-items-center">
+                            <form onSubmit={event => this.handleSubmit(event, this.state.data)}>
+                                <div className="row justify-content-center my-5">
+                                    {/*<InputGroup className="mb-3 mt-2 email-input-login">*/}
+                                    {/*    <FormControl*/}
+                                    {/*        onChange={this.hadnleChange}*/}
+                                    {/*        name="username"*/}
+                                    {/*        value={this.state.data.Email}*/}
+                                    {/*        id="email" type="text"*/}
+                                    {/*        className="placeHolder-input input-style"*/}
+                                    {/*        placeholder="نام کاربری خودرا وارد نمایید"*/}
+                                    {/*    />*/}
+                                    {/*</InputGroup>*/}
+                                    <TextInput
+                                        id="email"
+                                        type="text"
+                                        label="نام کاربری"
+                                        value={this.state.data.username}
+                                        onChange={(value) => {
+                                            this.hadnleChange("username", value)
+                                        }}
+                                    />
+                                </div>
 
-                        </div> :null
-                    }
-                    <div className="row justify-content-center">
-                        <Button id="button" className="mb-5 button-submit-login" type="submit" variant="success"
-                                size="md">
-                            ورود
-                        </Button>
-                    </div>
+                                <div className="row justify-content-center my-5">
+                                    {/*<InputGroup className="mb-3 mt-2 password-input-login">*/}
+                                    {/*    <FormControl*/}
+                                    {/*        onChange={this.hadnleChange}*/}
+                                    {/*        name="password"*/}
+                                    {/*        value={this.state.data.Password}*/}
+                                    {/*        id="password" type="password"*/}
+                                    {/*        className="placeHolder-input input-style"*/}
+                                    {/*        placeholder="رمز عبور خودرا وارد نمایید"*/}
+                                    {/*    />*/}
+                                    {/*</InputGroup>*/}
+                                    <TextInput
+                                        id="password"
+                                        type="password"
+                                        label="رمز عبور"
+                                        value={this.state.data.password}
+                                        onChange={(value) => {
+                                            this.hadnleChange("password", value)
+                                        }}
+                                    />
+                                </div>
+                                {this.state.error ?
+                                    <div className="row justify-content-center">
+                                        <div className="alert alert-danger" role="alert" style={{direction: "rtl"}}>
+                                            {this.state.error}
+                                        </div>
+                                    </div> : null
+                                }
+                                <div className="row justify-content-center">
+                                    <Button id="button" className="mb-5 button-submit-login" type="submit"
+                                            variant="success"
+                                            size="md">
+                                        ورود
+                                    </Button>
+                                </div>
 
-                </form>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
 
             </div>
         );
@@ -137,7 +163,11 @@ class LoginContainer extends Component {
         return (
             <div>
                 <div className="background"></div>
-                {loginForm}
+                <div className="d-flex min-vh-100">
+                    <div className="d-flex w-100 align-items-center justify-content-center">
+                        {loginForm}
+                    </div>
+                </div>
             </div>
         );
     }

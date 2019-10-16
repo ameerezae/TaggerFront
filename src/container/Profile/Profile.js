@@ -12,7 +12,7 @@ import {
     FaUserGraduate,
     FaUserTag
 } from "react-icons/fa";
-import {IoMdMail, IoMdCalendar, IoMdFingerPrint} from "react-icons/io";
+import {IoMdMail, IoMdCalendar, IoMdFingerPrint, IoIosList} from "react-icons/io";
 import {MdGroup} from "react-icons/md";
 import {GoGlobe} from "react-icons/go";
 import {Button} from "react-bootstrap";
@@ -61,7 +61,7 @@ class ProfileComponent extends Component {
                     },
 
             });
-            console.log(response.status,"STATUS",typeof response.status);
+            console.log(response.status, "STATUS", typeof response.status);
             const data = await response.json();
             this.saveData(data);
             if (!response.ok) {
@@ -324,9 +324,11 @@ class ProfileComponent extends Component {
 
         return (
             <div className="row">
-                <div className="col-lg-10 backgroundStyle col-md-9 min-vh-100">
+                <div className="col-lg-10 backgroundStyle  col-md-9 directionToLeft min-vh-100">
+                    <div className="container-fluid p-1 hidden-sm hidden-md hidden-lg " style={{backgroundColor : "#011B56"}}>
+                        <IoIosList style = {{color:"white",fontSize : "2rem"}} className="mr-2 " onClick={() => this.setState({showNav: true})}/>
+                    </div>
                     <div className="container-fluid w-75 mt-5 directionToLeft ">
-
                         <div className="container bg-white mb-5 border-shape border shadow p-4">
                             <div className="row justify-content-end ml-2">
                                 <Button className="justify-content-end" onClick={() => {
@@ -336,11 +338,8 @@ class ProfileComponent extends Component {
                             {originalForm}
                         </div>
                         <div className="hidden-sm hidden-md hidden-lg">
-                            <button onClick={() => {
-                                this.setState({showNav: true})
-                            }}>click
-                            </button>
-                            <SideNavbarXs ShowNav={this.state.showNav} closeNav={this.closeSideNavabr}/>
+                            <SideNavbarXs ShowNav={this.state.showNav}
+                                          closeNav={() => this.setState({showNav: false})}/>
                         </div>
                     </div>
                 </div>

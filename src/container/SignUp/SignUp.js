@@ -1,32 +1,33 @@
 import React, {Component} from 'react';
 import "./SignUp.css";
 import {Button, FormControl, InputGroup} from "react-bootstrap";
+
 class SignUpContainer extends Component {
     state = {
-        data : {
-            username : "",
-            email : "",
+        data: {
+            username: "",
+            email: "",
             password1: "",
-            password2 : "",
+            password2: "",
             phone_number: "",
         },
         doesExistUsername: null,
-        idForUsername : "",
-        error : [],
+        idForUsername: "",
+        error: [],
     };
 
     async requestForCheckUsername(username) {
         try {
             const url = "http://127.0.0.1:8000/authentication/check_username/";
-            const response = await fetch(`${url}`,{
-                method:"POST",
-                body:JSON.stringify({"username":username}),
-                headers : {
-                    "Content-Type" : "application/json"
+            const response = await fetch(`${url}`, {
+                method: "POST",
+                body: JSON.stringify({"username": username}),
+                headers: {
+                    "Content-Type": "application/json"
                 }
             });
 
-            if (!response.ok){
+            if (!response.ok) {
                 console.log("OHH BadRequest!");
                 throw Error(response.statusText);
 
@@ -34,43 +35,47 @@ class SignUpContainer extends Component {
 
             const json = await response.json();
 
-            this.setState({doesExistUsername : json.detail},() => {
+            this.setState({doesExistUsername: json.detail}, () => {
 
                 switch (this.state.doesExistUsername) {
 
-                    case null: this.setState({idForUsername : "username"}); break;
-                    case true : this.setState({idForUsername : "username-red"}); break;
-                    case false : this.setState({idForUsername : "username-green"}); break;
-                    default : this.setState({idForUsername : "username"}); break;
+                    case null:
+                        this.setState({idForUsername: "username"});
+                        break;
+                    case true :
+                        this.setState({idForUsername: "username-red"});
+                        break;
+                    case false :
+                        this.setState({idForUsername: "username-green"});
+                        break;
+                    default :
+                        this.setState({idForUsername: "username"});
+                        break;
 
                 }
-        })
-        }
-        catch (e) {
-            console.log(e,"The server is Down!");
+            })
+        } catch (e) {
+            console.log(e, "The server is Down!");
         }
 
     }
-
 
 
     handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
         this.setState(prevState => {
-            const newState = {...prevState};
-            newState.data[name] = value;
-            return newState;
+                const newState = {...prevState};
+                newState.data[name] = value;
+                return newState;
             },
             () => {
                 if (name === "username" &&
-                value.length >= 4) {
+                    value.length >= 4) {
                     this.requestForCheckUsername(this.state.data.username);
-                    console.log(name.length);
-                }
-                else if (value.length < 4 ){
+                } else if (value.length < 4) {
 
-                    this.setState({idForUsername : "username"});
+                    this.setState({idForUsername: "username"});
 
                 }
 
@@ -80,32 +85,37 @@ class SignUpContainer extends Component {
 
     async handleSubmit(event, data) {
         event.preventDefault();
-        try{
+        try {
             const url = "http://127.0.0.1:8000/authentication/registration/";
-            const response = await fetch(`${url}`,{
-                    method : "POST",
-                    body : JSON.stringify(data),
-                    headers : {
-                        "Content-type" : "application/json"
-                    }
-                });
-            if(response.status === 400){
-                const data = response.json();
-                Object.keys(data).forEach((key,index) => {
-                    data[key].forEach(element=>{
-                        this.state.error.push(element);
+            const response = await fetch(`${url}`, {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-type": "application/json"
+                }
+            });
+            if (response.status === 400) {
+
+                const data = await response.json();
+                let newerr = [];
+                Object.keys(data).forEach((key, index) => {
+                    data[key].forEach(element => {
+
+                        newerr.push(element);
+                        //this.state.error.push(element);
+
                     })
                 })
+                this.setState({error: newerr})
             }
-            if(!response.ok){
+            if (!response.ok) {
                 console.log("OHH BadRequest!");
                 throw Error(response.statusText);
             }
-        }catch (e) {
-            console.log(e,"The server is Down!")
+        } catch (e) {
+            console.log(e, "The server is Down!")
         }
     }
-
 
 
     render() {
@@ -198,16 +208,25 @@ class SignUpContainer extends Component {
                             </div>
                         </div>
                     </div>
-                    {this.state.error.length !== 0?
-                        <div className="row justify-content-center" >
-                            <div className="alert alert-danger" role="alert">
-                                {this.state.error.map(element => (element))}
-                            </div>
-
-                        </div> :null
-                    }
                     <div className="row justify-content-center">
-                        <Button id="button" className="mt-4 mb-4 button-submit-signup" type="submit" variant="success"
+                        {this.state.error.length !== 0 ?
+                            <div className="row justify-content-center">
+                                <div className="alert alert-danger" role="alert" style={{direction: "rtl"}}>
+
+                                    {this.state.error.map(element => (
+                                        <div className="row justify-content-center">
+                                            {element}
+                                        </div>
+                                    ))}
+
+
+                                </div>
+
+                            </div> : null
+                        }
+                    </div>
+                    <div className="row justify-content-center">
+                        <Button id="button" className="mb-4 button-submit-signup" type="submit" variant="success"
                                 size="md">
                             ثبت نام
                         </Button>
