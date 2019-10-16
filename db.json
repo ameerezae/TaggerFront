@@ -1,0 +1,25 @@
+{
+  "authentication": {
+    "username": "45645",
+    "password": "56856856856"
+  },
+  "profile": {
+    "username": "moh",
+    "first_name": "محسن",
+    "last_name": "حسنی",
+    "email": "amirhas@yahoo.com",
+    "image": null,
+    "birthday": "1378/12/02",
+    "phone_number": "09369866444",
+    "gender": "1",
+    "grade": "2",
+    "university": "دانشگاه علم و صنعت ایران",
+    "entering_year": "1390/08/04",
+    "graduate_year": "1394/05/01",
+    "bio": "مهندسی کامپیوتر",
+    "id_code": "0022462831",
+    "social_account": "",
+    "genderLabel": "",
+    "gradeLabel": ""
+  }
+}

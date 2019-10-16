@@ -7,7 +7,7 @@ const SideNavbarXs = (props) => {
             showNav={props.ShowNav}
             onHideNav={props.closeNav}
             title={<div>داشبورد</div>}
-            titleStyle={{backgroundColor: '#2196F3',
+            titleStyle={{backgroundColor: '#011B56',
                 textAlign:"right",
                 direction:"rtl",
                 fontFamily:"Shabnam",
@@ -15,6 +15,7 @@ const SideNavbarXs = (props) => {
                 marginBottom:"1rem"}}
 
             itemStyle = {{textAlign:"right",
+                listStyleType : "none",
                 direction:"rtl",
                 fontFamily:"Shabnam",
                 padding:"8px"}}

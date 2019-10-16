@@ -4,8 +4,14 @@
     <list default="true" id="5e15bef4-5222-4a88-b915-8b57e88075a2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SideNavbar-xs/SideNavbar-xs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SideNavbar-xs/SideNavbar-xs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/EditProfile/EditProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/EditProfile/EditProfile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/Login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/Login/Login.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/Login/Login.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/Profile/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/Profile/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/SignUp/SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/SignUp/SignUp.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -99,7 +105,15 @@
       <workItem from="1569394031932" duration="15231000" />
       <workItem from="1569480844418" duration="8624000" />
       <workItem from="1570094030901" duration="4463000" />
-      <workItem from="1570606991645" duration="6958000" />
+      <workItem from="1570606991645" duration="14008000" />
+      <workItem from="1570640881877" duration="11000" />
+      <workItem from="1570691880459" duration="2315000" />
+      <workItem from="1570703796456" duration="606000" />
+      <workItem from="1570706148725" duration="68000" />
+      <workItem from="1570706242919" duration="3557000" />
+      <workItem from="1570810409473" duration="19000" />
+      <workItem from="1571207463718" duration="14687000" />
+      <workItem from="1571227136197" duration="901000" />
     </task>
     <servers />
   </component>

@@ -3361,6 +3361,11 @@ compression@^1.5.2, compression@^1.7.4:
     safe-buffer "5.1.2"
     vary "~1.1.2"
 
+compute-scroll-into-view@1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/compute-scroll-into-view/-/compute-scroll-into-view-1.0.11.tgz#7ff0a57f9aeda6314132d8994cce7aeca794fecf"
+  integrity sha512-uUnglJowSe0IPmWOdDtrlHXof5CTIJitfJEyITHBW6zDVOGu9Pjk5puaLM73SLcwak0L4hEjO7Td88/a6P5i7A==
+
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
@@ -3597,7 +3602,7 @@ create-react-class@15.x, create-react-class@^15.5.x, create-react-class@^15.6.0:
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
-create-react-context@^0.2.1:
+create-react-context@^0.2.1, create-react-context@^0.2.2:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/create-react-context/-/create-react-context-0.2.3.tgz#9ec140a6914a22ef04b8b09b7771de89567cb6f3"
   integrity sha512-CQBmD0+QGgTaxDL3OX1IDXYqjkp2It4RIbcb99jS6AEg27Ga+a9G3JtK6SIu0HBwPLZlmwt9F7UwWA4Bn92Rag==
@@ -4892,6 +4897,11 @@ execa@^1.0.0:
     p-finally "^1.0.0"
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
+
+exenv@^1.2.0:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
+  integrity sha1-KueOhdmJQVhnCwPUe+wfA72Ru50=
 
 exists-sync@0.0.4:
   version "0.0.4"
@@ -7671,7 +7681,7 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-lodash@4, lodash@^4.0.0, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@~4.17.10:
+lodash@4, lodash@^4.0.0, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.4, lodash@~4.17.10:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
@@ -7809,6 +7819,11 @@ matcher-collection@^1.0.0:
   integrity sha512-YQ/teqaOIIfUHedRam08PB3NK7Mjct6BvzRnJmpGDm8uFXpNr1sbY4yuflI5JcEs6COpYA0FpRQhSDBf1tT95g==
   dependencies:
     minimatch "^3.0.2"
+
+materialize-css@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/materialize-css/-/materialize-css-1.0.0.tgz#8d5db1c4a81c6d65f3b2e2ca83a8e08daa24d1be"
+  integrity sha512-4/oecXl8y/1i8RDZvyvwAICyqwNoKU4or5uf8uoAd74k76KzZ0Llym4zhJ5lLNUskcqjO0AuMcvNyDkpz8Z6zw==
 
 md5.js@^1.3.4:
   version "1.3.5"
@@ -10231,6 +10246,11 @@ react-context-toolbox@^2.0.2:
   resolved "https://registry.yarnpkg.com/react-context-toolbox/-/react-context-toolbox-2.0.2.tgz#35637287cb23f801e6ed802c2bb7a97e1f04e3fb"
   integrity sha512-tY4j0imkYC3n5ZlYSgFkaw7fmlCp3IoQQ6DxpqeNHzcD0hf+6V+/HeJxviLUZ1Rv1Yn3N3xyO2EhkkZwHn0m1A==
 
+react-create-ref@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-create-ref/-/react-create-ref-1.0.1.tgz#c0cbeec9e05b608c9f9434fafbecbcc46750293d"
+  integrity sha512-pryn9uefKa5HPfmgf1Gl93+hwN2rqXeipLSdnq6Q9M7Pd00sx617GyOtluqVoQ0XlvvYJ8Bw/uTorXvH+fgUGQ==
+
 react-datepicker-persian@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/react-datepicker-persian/-/react-datepicker-persian-1.0.2.tgz#6fb6e7c094fc8bc64b33afa4fd0bdb94304865ad"
@@ -10256,6 +10276,13 @@ react-datepicker2@^3.0.3:
     react-onclickoutside "^6.8.0"
     react-tether "^2.0.0"
     react-with-styles "^3.2.1"
+
+react-day-picker@^7.2.4:
+  version "7.3.2"
+  resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-7.3.2.tgz#b9b9b0000ba53b2c9df9bccb79664862aba6b60a"
+  integrity sha512-mij2j2Un/v2V2ow+hf/hFBMdl6Eis/C/YhBtlI6Xpbvh3Q6WMix78zEkCdw6i9GldafOrpnupWKofv/h5oSI4g==
+  dependencies:
+    prop-types "^15.6.2"
 
 react-dev-utils@^9.0.3:
   version "9.0.3"
@@ -10344,7 +10371,7 @@ react-is@^16.8.1, react-is@^16.8.4:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
   integrity sha512-aUk3bHfZ2bRSVFFbbeVS4i+lNPZr3/WM5jT2J5omUVV1zzcs1nAaf3l51ctA5FFvCRbhrH0bdAsRRQddFJZPtA==
 
-react-lifecycles-compat@^3.0.4:
+react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
@@ -10362,6 +10389,16 @@ react-materialize@^3.4.1:
     classnames "^2.2.5"
     react "^16.8.5"
     react-dom "^16.8.5"
+
+react-modal@^3.8.1:
+  version "3.10.1"
+  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.10.1.tgz#ba37927871830c798f51404aa6bc71ff7a5e4c16"
+  integrity sha512-2DKIfdOc8+WY+SYJ/xf/WBwOYMmNAYAyGkYlc4e1TCs9rk1xY4QBz04hB3UHGcrLChh7ce77rHAe6VPNmuLYsQ==
+  dependencies:
+    exenv "^1.2.0"
+    prop-types "^15.5.10"
+    react-lifecycles-compat "^3.0.0"
+    warning "^4.0.3"
 
 react-onclickoutside@^5.3.3, react-onclickoutside@^5.9.0:
   version "5.11.1"
@@ -10420,6 +10457,29 @@ react-popper@^1.3.2:
     prop-types "^15.6.1"
     typed-styles "^0.0.7"
     warning "^4.0.2"
+
+react-responsive-ui@^0.14.178:
+  version "0.14.178"
+  resolved "https://registry.yarnpkg.com/react-responsive-ui/-/react-responsive-ui-0.14.178.tgz#5ff00033d8bac6055c64043f972a650cad56daab"
+  integrity sha512-RmZCtZDoGkiHHw/yh9SVpwdN94PIOL9XEP3H3GWSrZbhgjf/fCt8+jfK75Z/tSI7qOjfGUV4kl9f+jscqUwLUw==
+  dependencies:
+    classnames "^2.2.5"
+    create-react-context "^0.2.2"
+    lodash "^4.17.4"
+    prop-types "^15.7.2"
+    react-create-ref "^1.0.1"
+    react-day-picker "^7.2.4"
+    react-lifecycles-compat "^3.0.2"
+    react-modal "^3.8.1"
+    scroll-into-view-if-needed "^2.2.16"
+
+react-responsive-window@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/react-responsive-window/-/react-responsive-window-1.0.8.tgz#e38452fc3b06ef8da4f7f2f295c6b9d701f49d3c"
+  integrity sha512-KU865P7wvqxyhlEqWbKD7DVV20co0PydM+QlvM7fZueUGOwzUdRnWtPzEFg2VVhHZ9QxqHs/WwteS7GC7mfKnA==
+  dependencies:
+    lodash "^4.17.11"
+    webpack "^4.39.1"
 
 react-router-dom@^5.0.1:
   version "5.0.1"
@@ -11218,6 +11278,13 @@ schema-utils@^2.0.0, schema-utils@^2.0.1:
   dependencies:
     ajv "^6.1.0"
     ajv-keywords "^3.1.0"
+
+scroll-into-view-if-needed@^2.2.16:
+  version "2.2.20"
+  resolved "https://registry.yarnpkg.com/scroll-into-view-if-needed/-/scroll-into-view-if-needed-2.2.20.tgz#3a46847a72233a3af9770e55df450f2a7f2e2a0e"
+  integrity sha512-P9kYMrhi9f6dvWwTGpO5I3HgjSU/8Mts7xL3lkoH5xlewK7O9Obdc5WmMCzppln7bCVGNmf3qfoZXrpCeyNJXw==
+  dependencies:
+    compute-scroll-into-view "1.0.11"
 
 scss-tokenizer@^0.2.3:
   version "0.2.3"
@@ -12840,6 +12907,35 @@ webpack@4.39.1:
   version "4.39.1"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.39.1.tgz#60ed9fb2b72cd60f26ea526c404d2a4cc97a1bd8"
   integrity sha512-/LAb2TJ2z+eVwisldp3dqTEoNhzp/TLCZlmZm3GGGAlnfIWDgOEE758j/9atklNLfRyhKbZTCOIoPqLJXeBLbQ==
+  dependencies:
+    "@webassemblyjs/ast" "1.8.5"
+    "@webassemblyjs/helper-module-context" "1.8.5"
+    "@webassemblyjs/wasm-edit" "1.8.5"
+    "@webassemblyjs/wasm-parser" "1.8.5"
+    acorn "^6.2.1"
+    ajv "^6.10.2"
+    ajv-keywords "^3.4.1"
+    chrome-trace-event "^1.0.2"
+    enhanced-resolve "^4.1.0"
+    eslint-scope "^4.0.3"
+    json-parse-better-errors "^1.0.2"
+    loader-runner "^2.4.0"
+    loader-utils "^1.2.3"
+    memory-fs "^0.4.1"
+    micromatch "^3.1.10"
+    mkdirp "^0.5.1"
+    neo-async "^2.6.1"
+    node-libs-browser "^2.2.1"
+    schema-utils "^1.0.0"
+    tapable "^1.1.3"
+    terser-webpack-plugin "^1.4.1"
+    watchpack "^1.6.0"
+    webpack-sources "^1.4.1"
+
+webpack@^4.39.1:
+  version "4.41.2"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.41.2.tgz#c34ec76daa3a8468c9b61a50336d8e3303dce74e"
+  integrity sha512-Zhw69edTGfbz9/8JJoyRQ/pq8FYUoY0diOXqW0T6yhgdhCv6wr0hra5DwwWexNRns2Z2+gsnrNcbe9hbGBgk/A==
   dependencies:
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/helper-module-context" "1.8.5"
