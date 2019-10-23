@@ -3,16 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5e15bef4-5222-4a88-b915-8b57e88075a2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/SideNavbar-xs/SideNavbar-xs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SideNavbar-xs/SideNavbar-xs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/EditProfile/EditProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/EditProfile/EditProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/Login/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/Login/Login.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/Login/Login.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/Profile/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/Profile/Profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/SignUp/SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/SignUp/SignUp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SideNavbar/SideNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SideNavbar/SideNavbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/CreateOrder/CreateOrder.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/CreateOrder/CreateOrder.scss" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -113,7 +107,11 @@
       <workItem from="1570706242919" duration="3557000" />
       <workItem from="1570810409473" duration="19000" />
       <workItem from="1571207463718" duration="14687000" />
-      <workItem from="1571227136197" duration="901000" />
+      <workItem from="1571227136197" duration="1687000" />
+      <workItem from="1571246478418" duration="6829000" />
+      <workItem from="1571300215780" duration="377000" />
+      <workItem from="1571388881633" duration="8627000" />
+      <workItem from="1571816430807" duration="12266000" />
     </task>
     <servers />
   </component>

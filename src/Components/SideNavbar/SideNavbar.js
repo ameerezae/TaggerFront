@@ -7,7 +7,7 @@ const SideNavbarComponent = () => {
     return (
             <div id="vertical-right" className="container-fluid">
                 <div className="row justify-content-center mt-2 mr-3">
-                    <img src={BlueBrand} alt="brand" style={{maxWidth:"100px"}} className="img-fluid"/>
+                    {/*<img src={BlueBrand} alt="brand" style={{maxWidth:"100px"}} className="img-fluid"/>*/}
                 </div>
                 <div className="row mt-4 mr-3">
                     <div> <i

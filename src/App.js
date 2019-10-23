@@ -4,7 +4,7 @@ import LoginContainer from "./container/Login/Login";
 import SignUpContainer from "./container/SignUp/SignUp";
 import ProfileContainer from "./container/Profile/Profile";
 import EditProfileContainer from "./container/EditProfile/EditProfile";
-import CreateOrderContainer from "./container/CreateOrder/CreateOrder";
+import GetOrderContainer from "./container/GetOrder/GetOrder";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
             <Route path="/signup" component={SignUpContainer}/>
             <Route path ="/edit" component={EditProfileContainer}/>
             <Route path ="/profile" component={ProfileContainer}/>
-            <Route path ="/createorder" component={CreateOrderContainer}/>
+            <Route path ="/getorder" component={GetOrderContainer}/>
           </Switch>
         </div>
       </BrowserRouter>
