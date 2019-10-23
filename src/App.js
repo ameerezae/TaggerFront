@@ -5,6 +5,7 @@ import SignUpContainer from "./container/SignUp/SignUp";
 import ProfileContainer from "./container/Profile/Profile";
 import EditProfileContainer from "./container/EditProfile/EditProfile";
 import GetOrderContainer from "./container/GetOrder/GetOrder";
+import CreateOrderContainer from "./container/CreateOrder/CreateOrder";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Route path ="/edit" component={EditProfileContainer}/>
             <Route path ="/profile" component={ProfileContainer}/>
             <Route path ="/getorder" component={GetOrderContainer}/>
+            <Route path="/createorder" component={CreateOrderContainer} />
           </Switch>
         </div>
       </BrowserRouter>
