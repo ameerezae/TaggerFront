@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import "./SignUp.css";
 import {Button, FormControl, InputGroup} from "react-bootstrap";
-
+import Auth_Page_Api from "../../_api/auth_api";
 class SignUpContainer extends Component {
     state = {
         data: {
@@ -18,14 +18,7 @@ class SignUpContainer extends Component {
 
     async requestForCheckUsername(username) {
         try {
-            const url = "http://127.0.0.1:8000/authentication/check_username/";
-            const response = await fetch(`${url}`, {
-                method: "POST",
-                body: JSON.stringify({"username": username}),
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            });
+            const response = await Auth_Page_Api.checkUsername(username);
 
             if (!response.ok) {
                 console.log("OHH BadRequest!");
@@ -33,9 +26,7 @@ class SignUpContainer extends Component {
 
             }
 
-            const json = await response.json();
-
-            this.setState({doesExistUsername: json.detail}, () => {
+            this.setState({doesExistUsername: response.detail}, () => {
 
                 switch (this.state.doesExistUsername) {
 
