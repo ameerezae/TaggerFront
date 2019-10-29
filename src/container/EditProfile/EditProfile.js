@@ -112,8 +112,7 @@ class EditProfileContainer extends Component {
 
     };
 
-    async handleSubmit(event) {
-        event.preventDefault();
+    createFormData = () => {
         const arr = [
             "username",
             "first_name",
@@ -135,10 +134,16 @@ class EditProfileContainer extends Component {
         arr.forEach(element => (
             formData.append(element, this.state.edited[element])
         ));
+        return formData;
+    };
+
+
+    async handleSubmit(event) {
+        event.preventDefault();
 
         try {
-
-            const response = await Profile_Pages_Api.editProfile(formData)
+            const formData = this.createFormData();
+            const response = await Profile_Pages_Api.editProfile(formData);
             if (!response.ok) {
                 console.log("OHH BadRequest!");
                 throw Error(response.statusText);
