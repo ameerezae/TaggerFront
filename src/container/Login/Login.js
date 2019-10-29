@@ -4,7 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {TextInput} from "react-responsive-ui"
 import "react-responsive-ui/style.css";
 import LoginPic from "../../assets/img-01.png";
-import {InputGroup, FormControl, Button} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
+import Auth_Page_Api from "../../_api/auth_api";
 
 class LoginContainer extends Component {
 
@@ -19,18 +20,10 @@ class LoginContainer extends Component {
     async handleSubmit(event, data) {
         event.preventDefault();
         try {
-            const url = 'http://127.0.0.1:8000/authentication/login/';
-            const response = await fetch(`${url}`, {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: {
+            const response = await Auth_Page_Api.login(data);
 
-                    "Content-type": "application/json"
-                }
-            });
             if (response.status === 400) {
-                const data = await response.json();
-                this.showError(data)
+                this.showError(response)
             }
 
             if (!response.ok) {
@@ -43,6 +36,7 @@ class LoginContainer extends Component {
     }
 
     showError = (json) => {
+
         if (this.state.data.username.length === 0) {
             this.setState({error: json["non_field_errors"][0]})
         } else if (this.state.data.password.length === 0) {
@@ -50,9 +44,9 @@ class LoginContainer extends Component {
         } else {
             this.setState({error: json["non_field_errors"][0]})
         }
+
     };
-    hadnleChange = (name, value) => {
-        console.log(name, value, "NAVL")
+    handleChange = (name, value) => {
         this.setState(prevState => {
             const newState = {...prevState};
             newState.data[name] = value;
@@ -64,7 +58,7 @@ class LoginContainer extends Component {
 
 
         const loginForm = (
-            <div className="center container py-4">
+            <div className="login-center container py-4">
                 <div className="row justify-content-center">
                     <p className="login-title mt-3"> ورود </p>
                 </div>
@@ -92,45 +86,27 @@ class LoginContainer extends Component {
                         <div className="row justify-content-center align-items-center">
                             <form onSubmit={event => this.handleSubmit(event, this.state.data)}>
                                 <div className="row justify-content-center my-5">
-                                    {/*<InputGroup className="mb-3 mt-2 email-input-login">*/}
-                                    {/*    <FormControl*/}
-                                    {/*        onChange={this.hadnleChange}*/}
-                                    {/*        name="username"*/}
-                                    {/*        value={this.state.data.Email}*/}
-                                    {/*        id="email" type="text"*/}
-                                    {/*        className="placeHolder-input input-style"*/}
-                                    {/*        placeholder="نام کاربری خودرا وارد نمایید"*/}
-                                    {/*    />*/}
-                                    {/*</InputGroup>*/}
-                                    <TextInput
-                                        id="email"
-                                        type="text"
-                                        label="نام کاربری"
-                                        value={this.state.data.username}
-                                        onChange={(value) => {
-                                            this.hadnleChange("username", value)
-                                        }}
-                                    />
+                                    <div className="col-sm-12">
+                                        <TextInput
+                                            type="text"
+                                            label="نام کاربری"
+                                            value={this.state.data.username}
+                                            onChange={(value) => {
+                                                this.handleChange("username", value)
+                                            }}
+                                        />
+                                    </div>
+
                                 </div>
 
                                 <div className="row justify-content-center my-5">
-                                    {/*<InputGroup className="mb-3 mt-2 password-input-login">*/}
-                                    {/*    <FormControl*/}
-                                    {/*        onChange={this.hadnleChange}*/}
-                                    {/*        name="password"*/}
-                                    {/*        value={this.state.data.Password}*/}
-                                    {/*        id="password" type="password"*/}
-                                    {/*        className="placeHolder-input input-style"*/}
-                                    {/*        placeholder="رمز عبور خودرا وارد نمایید"*/}
-                                    {/*    />*/}
-                                    {/*</InputGroup>*/}
                                     <TextInput
-                                        id="password"
+                                        id="rrui__password-input"
                                         type="password"
                                         label="رمز عبور"
                                         value={this.state.data.password}
                                         onChange={(value) => {
-                                            this.hadnleChange("password", value)
+                                            this.handleChange("password", value)
                                         }}
                                     />
                                 </div>
