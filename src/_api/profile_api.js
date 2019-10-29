@@ -20,6 +20,21 @@ class Profile_Pages_Api {
         );
         return response;
     }
+
+    static async editProfile(edited) {
+        const config = {
+            headers: {
+                Authorization: "JWT " + `${Cookies.get("JWTToken")}`,
+            }
+        };
+        const body = edited;
+        const response = await axios.put(
+            api_urls.EDIT_PROFILE,
+            body,
+            config
+        );
+        return response;
+    }
 }
 
 export default Profile_Pages_Api;
