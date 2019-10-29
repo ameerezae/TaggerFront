@@ -10,7 +10,6 @@ class Profile_Pages_Api {
             headers:
                 {
                     Authorization: `JWT ${Cookies.get("JWTToken")}`,
-                    'Content-Type': 'application/json'
                 },
         };
 
