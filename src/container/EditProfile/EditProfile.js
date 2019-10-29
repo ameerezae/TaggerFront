@@ -24,6 +24,7 @@ import {TagInput} from "reactjs-tag-input";
 import {Button} from "react-bootstrap";
 import MagicDropzone from "react-magic-dropzone";
 import Cookies from "js-cookie";
+import Profile_Pages_Api from "../../_api/profile_api";
 
 class EditProfileContainer extends Component {
     state = {
@@ -111,9 +112,8 @@ class EditProfileContainer extends Component {
 
     };
 
-    async handleSubmit(event, data) {
+    async handleSubmit(event) {
         event.preventDefault();
-        console.log(data);
         const arr = [
             "username",
             "first_name",
@@ -137,15 +137,8 @@ class EditProfileContainer extends Component {
         ));
 
         try {
-            const url = "http://127.0.0.1:8000/authentication/profile/";
-            const response = await fetch(`${url}`, {
-                method: "PUT",
-                body: formData,
-                headers: {
-                    Authorization: "JWT " + `${Cookies.get("JWTToken")}`,
 
-                }
-            });
+            const response = await Profile_Pages_Api.editProfile(formData)
             if (!response.ok) {
                 console.log("OHH BadRequest!");
                 throw Error(response.statusText);
