@@ -18,6 +18,7 @@ import {GoGlobe} from "react-icons/go";
 import {Button} from "react-bootstrap";
 import User from "../../assets/user.png";
 import {SocialIcon} from "react-social-icons";
+import Profile_Pages_Api from "../../_api/profile_api";
 
 class ProfileComponent extends Component {
     state = {
@@ -50,20 +51,9 @@ class ProfileComponent extends Component {
     async getDetails() {
 
         try {
-            const url = "http://localhost:3004/profile/";
+            const response = await Profile_Pages_Api.getProfileDetails()
+            this.saveData(response);
 
-            const response = await fetch(`${url}`, {
-                method: "GET",
-                headers:
-                    {
-                        // Authorization: "JWT " + `${Cookies.get("JWTToken")}`
-                        'Content-Type': 'application/json'
-                    },
-
-            });
-            console.log(response.status, "STATUS", typeof response.status);
-            const data = await response.json();
-            this.saveData(data);
             if (!response.ok) {
                 console.log("OHH BadRequest!");
                 throw Error(response.statusText);
@@ -325,8 +315,10 @@ class ProfileComponent extends Component {
         return (
             <div className="row">
                 <div className="col-lg-10 backgroundStyle  col-md-9 directionToLeft min-vh-100">
-                    <div className="container-fluid p-1 hidden-sm hidden-md hidden-lg " style={{backgroundColor : "#011B56"}}>
-                        <IoIosList style = {{color:"white",fontSize : "2rem"}} className="mr-2 " onClick={() => this.setState({showNav: true})}/>
+                    <div className="container-fluid p-1 hidden-sm hidden-md hidden-lg "
+                         style={{backgroundColor: "#011B56"}}>
+                        <IoIosList style={{color: "white", fontSize: "2rem"}} className="mr-2 "
+                                   onClick={() => this.setState({showNav: true})}/>
                     </div>
                     <div className="container-fluid w-75 mt-5 directionToLeft ">
                         <div className="container bg-white mb-5 border-shape border shadow p-4">
