@@ -30,7 +30,7 @@ class Auth_Page_Api {
 
         const body = JSON.stringify(credentials);
 
-        const response = axios.post(
+        const response = await axios.post(
             api_urls.SIGNUP,
             body,
             config
