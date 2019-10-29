@@ -61,18 +61,9 @@ class EditProfileContainer extends Component {
     async getDetails() {
 
         try {
-            const url = "http://127.0.0.1:8000/authentication/profile/";
-            const response = await fetch(`${url}`, {
-                method: "GET",
-                headers:
-                    {
-                        Authorization: "JWT " + `${Cookies.get("JWTToken")}`
-                    },
+            const response = await Profile_Pages_Api.getProfileDetails();
+            this.saveData(response);
 
-            });
-            const data = await response.json();
-            console.log(data, "DATAAA")
-            this.saveData(data)
             if (!response.ok) {
                 console.log("OHH BadRequest!");
                 throw Error(response.statusText);
