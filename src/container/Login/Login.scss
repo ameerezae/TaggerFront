@@ -7,7 +7,7 @@ a{
   }
 }
 @media screen and (max-width: 1000px) {
-  div.center{
+  div.login-center{
     width: 100% !important;
   }
 }
@@ -26,7 +26,7 @@ a{
   left:0;
 
 }
-.center {
+.login-center {
   width: 50% !important;
   //border: 3px solid gray;
   margin-top: 10%;
@@ -97,8 +97,15 @@ a{
     color: #218838!important;
   }
 }
-.rrui__text-input{
-  width : 90%
+#rrui__text-input{
+  width : 90%;
+
+
+}
+#rrui__password-input{
+  width : 90%;
+
+
 }
 #email,#password {
   font-size : 1.5rem;
