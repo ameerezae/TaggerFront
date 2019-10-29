@@ -74,27 +74,18 @@ class SignUpContainer extends Component {
 
     };
 
+
+
     async handleSubmit(event, data) {
         event.preventDefault();
         try {
-            const url = "http://127.0.0.1:8000/authentication/registration/";
-            const response = await fetch(`${url}`, {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: {
-                    "Content-type": "application/json"
-                }
-            });
+            const response = Auth_Page_Api.signup(data);
             if (response.status === 400) {
 
-                const data = await response.json();
                 let newerr = [];
-                Object.keys(data).forEach((key, index) => {
+                Object.keys(response).forEach((key, index) => {
                     data[key].forEach(element => {
-
                         newerr.push(element);
-                        //this.state.error.push(element);
-
                     })
                 })
                 this.setState({error: newerr})
