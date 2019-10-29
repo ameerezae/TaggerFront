@@ -77,7 +77,7 @@ class SignUpContainer extends Component {
     handleErrors = (response) => {
         let newError = [];
         Object.keys(response).forEach((key) => {
-            data[key].forEach(element => {
+            response[key].forEach(element => {
                 newError.push(element);
             })
         });
