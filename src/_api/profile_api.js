@@ -1,0 +1,25 @@
+import * as api_urls from "./api_urls";
+import axios from "axios";
+import Cookies from "js-cookie";
+
+
+class Profile_Pages_Api {
+
+    static async getProfileDetails() {
+        const config = {
+            headers:
+                {
+                    Authorization: `JWT ${Cookies.get("JWTToken")}`,
+                    'Content-Type': 'application/json'
+                },
+        };
+
+        const response = await axios.get(
+            api_urls.PROFILE,
+            config
+        );
+        return response;
+    }
+}
+
+export default Profile_Pages_Api;
