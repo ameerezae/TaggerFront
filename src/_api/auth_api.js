@@ -21,6 +21,24 @@ class Auth_Page_Api {
         return response;
     }
 
+    static async signup(credentials){
+        const config = {
+            headers: {
+                "Content-type": "application/json"
+            }
+        };
+
+        const body = JSON.stringify(credentials);
+
+        const response = axios.post(
+            api_urls.SIGNUP,
+            body,
+            config
+        );
+
+        return response
+    }
+
     static async checkUsername(username) {
         const config =
             {
