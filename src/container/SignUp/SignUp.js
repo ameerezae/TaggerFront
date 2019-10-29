@@ -74,22 +74,25 @@ class SignUpContainer extends Component {
 
     };
 
-
+    handleErrors = (response) => {
+        let newError = [];
+        Object.keys(response).forEach((key) => {
+            data[key].forEach(element => {
+                newError.push(element);
+            })
+        });
+        this.setState({error: newError})
+    };
 
     async handleSubmit(event, data) {
         event.preventDefault();
         try {
-            const response = Auth_Page_Api.signup(data);
-            if (response.status === 400) {
+            const response = await Auth_Page_Api.signup(data);
 
-                let newerr = [];
-                Object.keys(response).forEach((key, index) => {
-                    data[key].forEach(element => {
-                        newerr.push(element);
-                    })
-                })
-                this.setState({error: newerr})
+            if (response.status === 400) {
+                this.handleErrors(response);
             }
+
             if (!response.ok) {
                 console.log("OHH BadRequest!");
                 throw Error(response.statusText);
