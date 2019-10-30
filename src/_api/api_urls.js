@@ -4,3 +4,4 @@ export const SIGNUP = MAIN + "/authentication/registration/";
 export const CHECKUSERNAME = MAIN + "/authentication/check_username/";
 export const PROFILE = MAIN + "/authentication/profile/";
 export const EDIT_PROFILE = MAIN + "/authentication/profile/";
+export const POST_ORDERS = MAIN + "/order/submit-order";
