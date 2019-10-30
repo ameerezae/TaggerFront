@@ -23,7 +23,7 @@ class Profile_Pages_Api {
     static async editProfile(edited) {
         const config = {
             headers: {
-                Authorization: "JWT " + `${Cookies.get("JWTToken")}`,
+                Authorization: `JWT ${Cookies.get("JWTToken")}`,
             }
         };
         const body = edited;
