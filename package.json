@@ -64,6 +64,7 @@
     "react-dropdown": "^1.6.4",
     "react-icons": "^3.7.0",
     "react-magic-dropzone": "^1.0.1",
+    "react-number-format": "^4.3.1",
     "react-persian-calendar-date-picker": "^1.1.5",
     "react-persian-datepicker": "^3.0.2",
     "react-responsive-ui": "^0.14.178",
