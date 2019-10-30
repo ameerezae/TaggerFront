@@ -5,11 +5,19 @@ import SideNavbarComponent from "../../Components/SideNavbar/SideNavbar";
 import {Select, TextInput} from "react-responsive-ui";
 import NumberFormat from "react-number-format";
 import "./CreateOrder.scss"
-
+import TopNavbar from "../../Components/TopNavbar/TopNavbar";
 class CreateOrderContainer extends Component {
     state = {
         showNav: null,
-        price: null,
+        submitFields : {
+            subject: null,
+            content: null,
+            type: null,
+            tagger_size: null,
+            price : null,
+        }
+
+
     };
 
 
@@ -19,7 +27,7 @@ class CreateOrderContainer extends Component {
             newState[name] = value;
             return newState;
         }, () => {
-            console.log(this.state.price)
+            console.log(this.state)
         });
     };
 
@@ -27,15 +35,7 @@ class CreateOrderContainer extends Component {
         return (
             <div className="row">
                 <div className="col-lg-10  pr-0  col-md-9  min-vh-100">
-                    <div className="container-fluid p-2 directionToLeft " style={{backgroundColor: "#011B56"}}>
-                        <div className="row align-items-center mr-3">
-                            <IoIosList style={{color: "white", fontSize: "2rem"}}
-                                       className=" hidden-sm hidden-md hidden-lg"
-                                       onClick={() => this.setState({showNav: true})}/>
-                            <FaUser className="text-white hidden-xs"/>
-                            <div className="text-white mr-2 ">امیر رضایی</div>
-                        </div>
-                    </div>
+                    <TopNavbar onClick = {()=>this.setState({showNav: true})}/>
                     <div className="container-fluid mt-5 directionToLeft">
 
                         <div className="container mb-4 directionToLeft">
@@ -51,9 +51,11 @@ class CreateOrderContainer extends Component {
                                         success={"OK"}
                                         nativeExpanded
                                         label="نوع"
-                                        // value={...}
-                                        // onChange={...}
-                                        options={[{value: 'A', label: 'متنی'}]}/>
+                                        value={this.state.submitFields.subject}
+                                        onChange={(value) => {
+                                            this.handleChange("type", value)
+                                        }}
+                                        options={[{value: 'متنی', label: 'متنی'}]}/>
 
                                 </div>
                             </div>
@@ -68,10 +70,10 @@ class CreateOrderContainer extends Component {
                                     <TextInput
                                         type="text"
                                         label="عنوان"
-                                        // value={this.state.data.username}
-                                        // onChange={(value) => {
-                                        //     this.hadnleChange("username", value)
-                                        // }}
+                                        value={this.state.submitFields.subject}
+                                        onChange={(value) => {
+                                            this.handleChange("subject", value)
+                                        }}
                                     />
                                 </div>
                             </div>
@@ -88,10 +90,10 @@ class CreateOrderContainer extends Component {
                                         multiline
                                         type="text"
                                         label="توضیحات"
-                                        // value={this.state.data.username}
-                                        // onChange={(value) => {
-                                        //     this.hadnleChange("username", value)
-                                        // }}
+                                        value={this.state.submitFields.content}
+                                        onChange={(value) => {
+                                            this.handleChange("content", value)
+                                        }}
                                     />
                                 </div>
                             </div>
@@ -104,17 +106,9 @@ class CreateOrderContainer extends Component {
                             </div>
                             <div className="row">
                                 <div className="col-md-8 col-xs-12">
-                                    {/*<NumberFormat*/}
-                                    {/*    value={this.state.price}*/}
-                                    {/*    onValueChange={values => {*/}
-                                    {/*        console.log(values);*/}
-                                    {/*    }}*/}
-                                    {/*    customInput = {TextInput}*/}
-                                    {/*    thousandSeparator*/}
-                                    {/*    prefix="تومان"/>*/}
                                     <TextInput type="number"
-                                               className = "customized-input"
-                                               value={this.state.price}
+                                               className="customized-input"
+                                               value={this.state.submitFields.price}
                                                onChange={(value) => {
                                                    this.handleChange("price", value)
                                                }}
@@ -133,8 +127,8 @@ class CreateOrderContainer extends Component {
                                     </div>
 
                                     <TextInput type="number"
-                                               className = "customized-input"
-                                               value={this.state.price}
+                                               className="customized-input"
+                                               value={this.state.submitFields.price}
                                                onChange={(value) => {
                                                    this.handleChange("price", value)
                                                }}
@@ -150,10 +144,10 @@ class CreateOrderContainer extends Component {
 
                                     <TextInput type="number"
                                                min="1"
-                                               className = "customized-input"
-                                               value={this.state.price}
+                                               className="customized-input"
+                                               value={this.state.submitFields.tagger_size}
                                                onChange={(value) => {
-                                                   this.handleChange("price", value)
+                                                   this.handleChange("tagger_size", value)
                                                }}
                                     />
 
@@ -168,7 +162,7 @@ class CreateOrderContainer extends Component {
                                       closeNav={() => this.setState({showNav: false})}/>
                     </div>
                 </div>
-                <div className="one-edge-shadow p-0 col-lg-2 col-3 hidden-xs">
+                <div className="one-edge-shadow p-0 col-lg-2 col-md-3 hidden-xs">
                     <SideNavbarComponent/>
                 </div>
             </div>
