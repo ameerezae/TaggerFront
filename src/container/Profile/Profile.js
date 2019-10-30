@@ -305,7 +305,7 @@ class ProfileComponent extends Component {
                     </div>
                     <div className="col">
                         <div className="row justify-content-start align-items-center">
-                            {this.state.tags.map(element => <SocialIcon url={"https://" + `${element}`}/>)}
+                            {this.state.tags.map(element => <SocialIcon url={`https://${element}`}/>)}
                         </div>
                     </div>
                 </div>
