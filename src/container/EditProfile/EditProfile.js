@@ -50,7 +50,7 @@ class EditProfileContainer extends Component {
             university: "",
             entering_year: "",
             graduate_year: "",
-            social_account: {},
+            social_account: "{}",
         }
     };
 
@@ -62,12 +62,9 @@ class EditProfileContainer extends Component {
 
         try {
             const response = await Profile_Pages_Api.getProfileDetails();
-            this.saveData(response);
+            this.saveData(response.data);
+            console.log(response)
 
-            if (!response.ok) {
-                console.log("OHH BadRequest!");
-                throw Error(response.statusText);
-            }
 
         } catch (e) {
             console.log(e, "The server is Down!");
@@ -135,12 +132,11 @@ class EditProfileContainer extends Component {
         try {
             const formData = this.createFormData();
             const response = await Profile_Pages_Api.editProfile(formData);
-            if (!response.ok) {
-                console.log("OHH BadRequest!");
-                throw Error(response.statusText);
+            if(response.status === 200){
+                this.props.history.push(`/profile`)
             }
         } catch (e) {
-            console.log(e, "The server is Down!")
+            console.log(e.response, "The server is Down!")
         }
     }
 
@@ -206,14 +202,14 @@ class EditProfileContainer extends Component {
 
     render() {
         const genderOptions = [
-            {value: 1, label: 'مرد'},
-            {value: 2, label: 'زن'},
+            {value: 'مرد', label: 'مرد'},
+            {value: 'زن', label: 'زن'},
         ];
         const gradeOptions = [
-            {value: 1, label: "دیپلم"},
-            {value: 2, label: "کارشناسی"},
-            {value: 3, label: "کارشاسی ارشد"},
-            {value: 4, label: "دکتری"}
+            {value: "دیپلم", label: "دیپلم"},
+            {value: "کارشناسی", label: "کارشناسی"},
+            {value: "کارشناسی ارشد", label: "کارشناسی ارشد"},
+            {value: "دکتری", label: "دکتری"}
         ];
 
 
@@ -487,6 +483,7 @@ class EditProfileContainer extends Component {
                                         <DatePicker
                                             className="setTextAlign"
                                             onChange={value => {
+                                                console.log(value);
                                                 this.setState(prevState => {
                                                     const newState = {...prevState};
                                                     newState.edited.entering_year = value.locale('fa').format('jYYYY/jM/jD')

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import "./SignUp.css";
 import {Button, FormControl, InputGroup} from "react-bootstrap";
 import Auth_Page_Api from "../../_api/auth_api";
+import {TextInput} from "react-responsive-ui";
 class SignUpContainer extends Component {
     state = {
         data: {
@@ -19,14 +20,14 @@ class SignUpContainer extends Component {
     async requestForCheckUsername(username) {
         try {
             const response = await Auth_Page_Api.checkUsername(username);
+            // console.log(response,response.ok,"ok")
+            // if (!response.ok) {
+            //     console.log("OHH BadRequest!");
+            //     throw Error(response.statusText);
+            //
+            // }
 
-            if (!response.ok) {
-                console.log("OHH BadRequest!");
-                throw Error(response.statusText);
-
-            }
-
-            this.setState({doesExistUsername: response.detail}, () => {
+            this.setState({doesExistUsername: response.data.detail}, () => {
 
                 switch (this.state.doesExistUsername) {
 
@@ -34,10 +35,10 @@ class SignUpContainer extends Component {
                         this.setState({idForUsername: "username"});
                         break;
                     case true :
-                        this.setState({idForUsername: "username-red"});
+                        this.setState({idForUsername: "username-green"});
                         break;
                     case false :
-                        this.setState({idForUsername: "username-green"});
+                        this.setState({idForUsername: "username-red"});
                         break;
                     default :
                         this.setState({idForUsername: "username"});
@@ -87,16 +88,17 @@ class SignUpContainer extends Component {
     async handleSubmit(event, data) {
         event.preventDefault();
         try {
+            console.log("OK")
             const response = await Auth_Page_Api.signup(data);
-
+            console.log(response,"RESPONSE");
             if (response.status === 400) {
                 this.handleErrors(response);
             }
 
-            if (!response.ok) {
-                console.log("OHH BadRequest!");
-                throw Error(response.statusText);
-            }
+            // if (!response.ok) {
+            //     console.log("OHH BadRequest!");
+            //     throw Error(response.statusText);
+            // }
         } catch (e) {
             console.log(e, "The server is Down!")
         }
@@ -111,37 +113,23 @@ class SignUpContainer extends Component {
                 </div>
                 <hr/>
                 <form onSubmit={(event) => this.handleSubmit(event, this.state.data)}>
-                    <div className="row justify-content-end">
-                        <h2 className="id-input-field mt-3">نام کاربری</h2>
-                    </div>
-                    <div className="row justify-content-center">
-                        <InputGroup variant="light" className="mb-3 mt-2 id-input-signup">
-                            <FormControl
-                                variant="light"
-                                onChange={this.handleChange}
-                                name="username"
-                                value={this.state.data.username}
-                                id={this.state.idForUsername} type="text"
-                                className="placeHolder-input input-style"
-                                placeholder="نام کاربری مورد نظر خودرا وارد نمایید"
-                                required/>
-                        </InputGroup>
-                    </div>
-                    <div className="row justify-content-end">
-                        <h2 className="email-input-field mt-3">ایمیل</h2>
-                    </div>
-                    <div className="row justify-content-center">
-                        <InputGroup className="mb-3 mt-2 email-input-signup">
-                            <FormControl
-                                onChange={this.handleChange}
-                                name="email"
-                                value={this.state.data.email}
-                                id="email" type="email"
-                                className="placeHolder-input input-style"
-                                placeholder="ایمیل خودرا وارد نمایید"
-                                required/>
-                        </InputGroup>
-                    </div>
+                    <TextInput
+                        type="text"
+                        label="نام کاربری"
+
+                        value={this.state.data.username}
+                        onChange={(value) => {
+                            this.handleChange("username", value)
+                        }}
+                    />
+                    <TextInput
+                        type="text"
+                        label="ایمیل"
+                        value={this.state.data.username}
+                        onChange={(value) => {
+                            this.handleChange("username", value)
+                        }}
+                    />
                     <div className="row justify-content-end">
                         <h2 className="phoneNumber-input-field mt-3">شماره تلفن همراه</h2>
                     </div>

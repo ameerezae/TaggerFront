@@ -3,10 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="5e15bef4-5222-4a88-b915-8b57e88075a2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/SideNavbar/SideNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SideNavbar/SideNavbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/CreateOrder/CreateOrder.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/CreateOrder/CreateOrder.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/_api/profile_api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/_api/profile_api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/EditProfile/EditProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/EditProfile/EditProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/Login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/Profile/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/Profile/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/SignUp/SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/SignUp/SignUp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="SCSS File" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -44,7 +48,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -111,7 +115,12 @@
       <workItem from="1571246478418" duration="6829000" />
       <workItem from="1571300215780" duration="377000" />
       <workItem from="1571388881633" duration="8627000" />
-      <workItem from="1571816430807" duration="12266000" />
+      <workItem from="1571816430807" duration="18800000" />
+      <workItem from="1571850472967" duration="21000" />
+      <workItem from="1572361701124" duration="7287000" />
+      <workItem from="1572418078027" duration="3995000" />
+      <workItem from="1572422798649" duration="11007000" />
+      <workItem from="1572505045040" duration="15734000" />
     </task>
     <servers />
   </component>

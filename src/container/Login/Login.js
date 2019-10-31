@@ -6,7 +6,8 @@ import "react-responsive-ui/style.css";
 import LoginPic from "../../assets/img-01.png";
 import {Button} from 'react-bootstrap';
 import Auth_Page_Api from "../../_api/auth_api";
-
+import NewSignup from "../SignUp/newSignup";
+import Cookies from "js-cookie";
 class LoginContainer extends Component {
 
     state = {
@@ -14,24 +15,22 @@ class LoginContainer extends Component {
             username: "",
             password: "",
         },
-        error: null,
+        error: [],
     };
 
     async handleSubmit(event, data) {
         event.preventDefault();
         try {
             const response = await Auth_Page_Api.login(data);
-
-            if (response.status === 400) {
-                this.showError(response)
+            if(response.status === 200){
+                Cookies.set("access-token",response.data.token)
+                this.props.history.push(`/profile`)
             }
+            console.log(response);
 
-            if (!response.ok) {
-                console.log("OHH BadRequest!");
-                throw Error(response.statusText);
-            }
         } catch (e) {
-            console.log(e, "The server is Down!");
+            console.log(e.response)
+            this.handleErrors(e.response.data)
         }
     }
 
@@ -45,6 +44,15 @@ class LoginContainer extends Component {
             this.setState({error: json["non_field_errors"][0]})
         }
 
+    };
+    handleErrors = (response) => {
+        let newError = [];
+        Object.keys(response).forEach((key) => {
+            response[key].forEach(element => {
+                newError.push(element);
+            })
+        });
+        this.setState({error: newError})
     };
     handleChange = (name, value) => {
         this.setState(prevState => {
@@ -70,8 +78,8 @@ class LoginContainer extends Component {
                         </div>
                     </div>
                     <div className="col-sm-6">
-                        <div className="row justify-content-center link-to-signUp"><a href={"/signup"}>عضویت</a></div>
 
+                        <NewSignup/>
                     </div>
 
                 </div>
@@ -79,7 +87,22 @@ class LoginContainer extends Component {
                 <div className="row align-items-center">
                     <div className="col-sm-6 col-md-6">
                         <div className="row align-items-center justify-content-center">
-                            <img src={LoginPic} alt="img" className="img-fluid" width="200px" height="200px"/>
+                            <img src={LoginPic} alt="img" className="img-fluid mb-4" width="200px" height="200px"/>
+                            {this.state.error.length !== 0 ?
+                                <div className="row justify-content-center">
+                                    <div className="alert alert-danger" role="alert" style={{direction: "rtl"}}>
+
+                                        {this.state.error.map(element => (
+                                            <div className="row justify-content-center">
+                                                {element}
+                                            </div>
+                                        ))}
+
+
+                                    </div>
+
+                                </div> : null
+                            }
                         </div>
                     </div>
                     <div className="col-sm-6 col-md-6">
@@ -101,7 +124,6 @@ class LoginContainer extends Component {
 
                                 <div className="row justify-content-center my-5">
                                     <TextInput
-                                        id="rrui__password-input"
                                         type="password"
                                         label="رمز عبور"
                                         value={this.state.data.password}
@@ -110,13 +132,6 @@ class LoginContainer extends Component {
                                         }}
                                     />
                                 </div>
-                                {this.state.error ?
-                                    <div className="row justify-content-center">
-                                        <div className="alert alert-danger" role="alert" style={{direction: "rtl"}}>
-                                            {this.state.error}
-                                        </div>
-                                    </div> : null
-                                }
                                 <div className="row justify-content-center">
                                     <Button id="button" className="mb-5 button-submit-login" type="submit"
                                             variant="success"
@@ -124,6 +139,8 @@ class LoginContainer extends Component {
                                         ورود
                                     </Button>
                                 </div>
+
+
 
                             </form>
                         </div>

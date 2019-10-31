@@ -28,7 +28,7 @@ class ProfileComponent extends Component {
         first_name: "",
         last_name: "",
         email: "",
-        image: null,
+        image_url: null,
         birthday: "",
         phone_number: "",
         gender: "",
@@ -51,16 +51,12 @@ class ProfileComponent extends Component {
     async getDetails() {
 
         try {
-            const response = await Profile_Pages_Api.getProfileDetails()
-            this.saveData(response);
-
-            if (!response.ok) {
-                console.log("OHH BadRequest!");
-                throw Error(response.statusText);
-            }
+            const response = await Profile_Pages_Api.getProfileDetails();
+            console.log(response,"Response")
+            this.saveData(response.data);
 
         } catch (e) {
-            console.log(e, "The server is Down!");
+            console.log(e.response, "The server is Down!");
         }
     }
 
@@ -70,7 +66,7 @@ class ProfileComponent extends Component {
             "first_name",
             "last_name",
             "email",
-            "image",
+            "image_url",
             "birthday",
             "phone_number",
             "gender",
@@ -91,9 +87,9 @@ class ProfileComponent extends Component {
         const originalForm = (
             <div>
                 <div className="row justify-content-center my-4">
-                    {this.state.image == null ?
+                    {this.state["image_url"] === null ?
                         <img src={User} alt="profile" className="img-fluid" style={{maxWidth: "100px"}}/> :
-                        <img src={this.state.image} alt="profile" className="img-fluid" style={{maxWidth: "100px"}}/>
+                        <img src={this.state.image_url} alt="profile" className="img-fluid" style={{maxWidth: "100px"}}/>
                     }
                 </div>
                 <div className="row my-4 mr-2 align-items-center">
